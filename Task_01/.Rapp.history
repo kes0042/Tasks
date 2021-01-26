@@ -1,3 +1,28 @@
 install.packages ("swirl")
-install.packages ("swirl")
 library ("swirl")
+swirl ()
+5 + 7
+x <- 5+7
+x
+x-3
+y <- x-3
+y
+c(1.1,9,3.14)
+z <- c(1.1,9,3.14)
+?c
+z
+c(z, 555, z)
+z* 2+100
+my_sqrt(z-1)
+my_sqrt<- sqrt(z-1)
+skip()
+my_div<-z/"mysqrt"
+my_div<-z/sqrt
+my_div<-z/my_sqrt
+skip()
+c(1,2,3,4)+c(0,10)
+c(1,2,3,4)+c(0,10,100)
+z* 2+1000
+my_div
+library ("swirl")
+swirl()
