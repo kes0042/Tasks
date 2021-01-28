@@ -117,3 +117,45 @@ skip()
 0/0
 Inf-INf
 Inf-Inf
+library("swirl")
+swirl()
+x
+x[1:10]
+x[is.na(x)]
+y <- x[!is.na(x)]
+print(y)
+y
+y[y>0]
+x[x>0]
+x[!is.na(x) & x>0]
+c(x(3, 5, 7))
+c(x[1:7])
+x[c(3, 5, 7)]
+x(i.e. x [0])
+x(i.e. x[0])
+x[0]
+x[3000]
+x[c(-2, -10)]
+x[-c(2, 10)]
+vect <- c(foo = 11, bar = 2, norf =NA)
+vect
+names(vect)
+c(11, 2, NA)
+vect2 <- c(11, 2, NA)
+names(vect2) <- c(1"foo", "bar", "norf")
+names(vect2) <- c("foo", "bar", "norf")
+identical("vect", "vect2")
+identical("vect2", "vect")
+identical("vect2")
+identical("vect2" vect)
+identical("vect2" , "vect")
+identical("vect" , "vect2")
+identical("vect"), ("vect2")
+identical("vect" "vect2")
+identical("vect,vect2")
+identical ("vect" , "vect2")
+identical ("vect2" , "vect2")
+identical ("vect" , "vect")
+identical (vect , vect2)
+vect["bar"]
+vect[c("foo", "bar")]
