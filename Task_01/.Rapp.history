@@ -1,15 +1,3 @@
-install.packages ("swirl")
-library ("swirl")
-swirl ()
-5 + 7
-x <- 5+7
-x
-x-3
-y <- x-3
-y
-c(1.1,9,3.14)
-z <- c(1.1,9,3.14)
-?c
 z
 c(z, 555, z)
 z* 2+100
@@ -206,3 +194,57 @@ class(my_data)
 cnames <- c("patient", "age", "weight", "bp", "rating", "test")
 colnames(my_data) <- cnames
 my_data
+library("swirl")
+swirl()
+==
+"=="
+'=='
+TRUE == TRUE
+(FALSE == TRUE) == FALSE
+6 == 7
+6 < 7
+6 <= 7
+10 <= 10
+5 != 7
+5 !FALSE 7
+5 ! 7
+5 != 7
+5 !== 7
+! 5 == 7
+FALSE & FALSE
+TRUE & c(TRUE, FALSE, FALSE)
+TRUE && c(TRUE, FALSE, FALSE)
+TRUE | c(TRUE, FALSE, FALSE)
+TRUE || c(TRUE, FALSE, FALSE)
+5 > 8 || 6 != 8 && 4 > 3.9
+isTRUE(6>4)
+identical('twins', 'twins')
+xor(5 == 6, !FALSE)
+ints <- sample(10)
+ints
+ints> 5
+which(< 7)
+which(ints>7)
+any(ints< 0)
+all(ints>0)
+library("swirl")
+swirl()
+Sys.Date()
+mean(c(2, 4, 5))
+submit()
+library("swirl")
+swirl()
+library("swirl")
+swirl()
+sys.date()
+Sys.date()
+Sys.date()
+Sys.Date()
+mean(c(2, 4, 5))
+submit()
+boring_function('My first funcction!')
+boring_function("My first funcction!")
+boring_function("My first function!")
+boring_function
+submit()
+submit()
