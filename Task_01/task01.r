@@ -1,1 +1,1 @@
-hist(mtcars$mpg)
+Data[257, ]
