@@ -49,9 +49,26 @@ par(las=1, mar=c(5, 5, 1, 1), mgp=c(2, 0.5, 0), tck=-0.01)
 plot(as.numeric(names(totalFeed)), totalFeed, type="b", pch=16, xlab="age in days", ylab=" ounces of milk")
 plot(as.numeric(names(totalFeed)), totalFeed, type="b", pch=16, xlab="age in days", ylab="ounces of milk")
 abline(h=mean(totalFeed), lty=2, col='red')
-dev.off()
-Questions1: The first two hypotheses would be inappropriate because there is not enough data to support them. 
-Question 2: This graph is difficult to read because of the large x-axis scale which makes the data scrunched together which makes it hard to determine the exact values for each point. 
+dev.off() 
 source("http://jonsmitchell.com/code/plotFxn02b.R")
 unique(beren3$event)
-hypothesis for task C: The amount of time that Beren sleeps for nap time has decreased as age increased
+beren4 <- beren3[Naps,]
+startHour <-(beren4$start_hour)
+startMin <- (beren4$start_minute)
+stopHour <- (beren4$start_minute)
+stopHour <-(beren4$end_hour)
+stopMin <- (beren4$end_minute)
+startHour
+startMin
+stopHour
+beren4$sleepTime <-((stopHour - startHour)* 60) +(stopMin-startMin)
+beren4
+totalNap <- tapply(beren4$sleepTime, beren4$age, sum)
+totalNap
+par(las=1, mar=c(5, 5, 1, 1), mgp=c(2,0.5,0), tck=-0.01)
+plot(as.numeric(names(totalNap)), totalNap, type= "b",pch=16, xlab="age in days", ylab='Nap time in minutes')
+cor.test(beren4$start_hour,beren4$sleepTime)
+These show a negative correlation. 
+hypothesis: The amount of time that Beren naps decreased as solid food consumption increased 
+
+
