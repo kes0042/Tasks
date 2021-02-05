@@ -70,5 +70,7 @@ plot(as.numeric(names(totalNap)), totalNap, type= "b",pch=16, xlab="age in days"
 cor.test(beren4$start_hour,beren4$sleepTime)
 These show a negative correlation. 
 hypothesis: The amount of time that Beren naps decreased as solid food consumption increased 
+Questions1: The first two hypotheses would be inappropriate because there is not enough data to support them. 
+Question 2: This graph is difficult to read because of the small x-axis scale which makes the data scrunched together which makes it hard to determine the exact values for each point.
 
 
