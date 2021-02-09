@@ -1,6 +1,8 @@
-setwd('~/Desktop/Evolution/tasks/Task_02')
+setwd('~/Desktop/Evolution/Tasks/Task_02')
+# read.csv() reads a file from your computer and stores the information in whatever object you tell it to
 Data <- read.csv ('http://jonsmitchell.com/data/beren.csv', stringsAsFactors=F)
 write.csv(Data, 'rawdata.csv', quote=F)
+
 length(Data)
 nrow(Data)
 ncol(Data)
@@ -11,8 +13,10 @@ Data[2,]
 Data[1:3,]
 Data[1:3, 4]
 Data[1:5, 1:3]
+
 Feeds <- which(Data[,9] == 'bottle')
 berenMilk <- Data[Feeds ,]
+
 head(berenMilk)
 Feeds <- which(Data[,'event'] == 'bottle')
 head(Feeds)
@@ -68,9 +72,52 @@ totalNap
 par(las=1, mar=c(5, 5, 1, 1), mgp=c(2,0.5,0), tck=-0.01)
 plot(as.numeric(names(totalNap)), totalNap, type= "b",pch=16, xlab="age in days", ylab='Nap time in minutes')
 cor.test(beren4$start_hour,beren4$sleepTime)
-These show a negative correlation. 
-hypothesis: The amount of time that Beren naps decreased as solid food consumption increased 
-Questions1: The first two hypotheses would be inappropriate because there is not enough data to support them. 
-Question 2: This graph is difficult to read because of the small x-axis scale which makes the data scrunched together which makes it hard to determine the exact values for each point.
+# These show a negative correlation. 
+# hypothesis: The amount of time that Beren naps decreased as solid food consumption increased 
+# Questions1: The first two hypotheses would be inappropriate because there is not enough data to support them. 
+# Question 2: This graph is difficult to read because of the small x-axis scale which makes the data scrunched together which makes it hard to determine the exact values for each point.
+
+Amox <- which(beren3$event == "amoxicilin")
+amoxData <- beren3[Amox,]
+head(amoxData)
+totalFeed
+unique(amoxData$age)
+head(amoxData)
+unique(amoxData$age)
+DoseDays <- unique(amoxData$age)
+totalFeed
+totalFeed[as.character(DoseDays)]
+DoseDays
+as.character(DoseDays)
+doseFeedNA <- as.character(DoseDays)
+na.omit(as.data.frame(x))
+doesFeedsNA <-x
+doseFeedsNA
+na.omit(as.data.frame(doseFeedsNA))[,1] 
+doseFeeds <- na.omit(as.data.frame(doseFeedsNA))[,1]
+NoAmox <- setdiff(names(totalFeed), as.character(DoseDays))
+NoAmox
+nodoseFeeds <- totalFeed [NoAmox]
+nodoseFeeds
+boxplot(doseFeeds, nodoseFeeds)
+t.test(doseFeeds, nodoseFeeds)
+
+#There is not a significant difference between the amount of amoxicilin and total ounces of milk  The test did not prove my hypothesis 
+
+# Object 1 = totalFeed on days with amoxilinc
+	# find the unique days on amoxicilin-- unique(), save as DoseDays
+
+	# use DoseDays (unique days for amox) and find feeds on only those days
+	### trick here is that the NAMES of totalFeed are the days, so we havezto ask it by name, not number. Use as.character(). Call this doseFeedsNA
+
+	# remove NAs from your data using na.omit(). 
+doseFeeds <- na.omit(as.data.frame(doseFeedsNA))[,1] # Replace x with whatever you call the totalFeed on dose days
 
 
+# Object 2 = totalFeed on days WITHOUT amox
+NoAmox <- setdiff(names(totalFeed), as.character(DoseDays))
+
+	# then subset totalFeeds by NoAmox to get nodoseFeeds
+
+	# statistical test to compare them
+	### t test and boxplot are best
