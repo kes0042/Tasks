@@ -1,0 +1,840 @@
+source("http://jonsmitchell.com/code/plotFxn02b.R")#
+unique(beren3$event)
+beren4 <- beren3[Amoxicilin,]
+beren4 <- beren3[amoxicilin,]
+setwd('~/Desktop/Evolution/tasks/Task_02')#
+Data <- read.csv ('http://jonsmitchell.com/data/beren.csv', stringsAsFactors=F)#
+write.csv(Data, 'rawdata.csv', quote=F)#
+length(Data)#
+nrow(Data)#
+ncol(Data)#
+colnames(Data)#
+head(data)#
+Data[1,]#
+Data[2,]#
+Data[1:3,]#
+Data[1:3, 4]#
+Data[1:5, 1:3]#
+Feeds <- which(Data[,9] == 'bottle')#
+berenMilk <- Data[Feeds ,]#
+head(berenMilk)#
+Feeds <- which(Data[,'event'] == 'bottle')#
+head(Feeds)#
+Feeds <- which(Data$event == 'bottle')#
+head(Feeds)#
+dayID <- apply(Data, 1, function(x) paste(x[1:3],collapse='-'))#
+head(dayID)#
+dateID <- sapply(dayID, as.Date, format = "%Y-%m-%d", origin = "2019-04-18")#
+head(dateID)#
+Data$age <- dateID - dateID [which(Data$event == 'birth')]#
+head(data)#
+beren2<-Data#
+beren3<- beren2[order(beren2$age) ,]#
+write.csv(beren3, 'beren_new.csv', quote=F, row.names=FALSE)#
+Feeds <- which(beren3$event == "bottle")
+head(numFeeds)
+avgMilk <- mean(beren3$value[Feeds])#
+avgFeed <- tapply(beren3$value[Feeds], beren3$age[Feeds], mean)#
+varFeed <- tapply(beren3$value[Feeds], beren3$age[Feeds], var)#
+totalFeed <- tapply(beren3$value[Feeds], beren3$age[Feeds], sum)#
+numFeeds <- tapply(beren3$value[Feeds] ,  beren3$age[Feeds], length)#
+head(numFeeds)
+cor(beren3$value[Feeds], beren3$amoxicilin [Feeds])
+Data("amoxicilin")
+numMedicine <- tapply(beren3$value[amoxicilin])
+setwd('~/Desktop/Evolution/tasks/Task_02')#
+Data <- read.csv ('http://jonsmitchell.com/data/beren.csv', stringsAsFactors=F)#
+write.csv(Data, 'rawdata.csv', quote=F)
+Feeds <- which(Data[,'event'] == 'bottle')
+head(Feeds)
+dayID <- apply(Data, 1, function(x) paste(x[1:3],collapse='-'))
+head(dayID)
+Data$medicine <- dateID - dateID [which(Data$event == 'amoxicilin')]
+setwd('~/Desktop/Evolution/tasks/Task_02')#
+Data <- read.csv ('http://jonsmitchell.com/data/beren.csv', stringsAsFactors=F)#
+write.csv(Data, 'rawdata.csv', quote=F)
+Medicine <- which(Data[,9] == 'amoxicilin')
+berenMedicine <- Data[Medicine ,]
+head(berenMedicine)
+Medicine <- which(Data[,'event'] == 'amoxicilin')
+head(Medicine)
+dayID <- apply(Data, 1, function(x) paste(x[1:3],collapse='-'))
+head(dayID)
+dayID <- apply(Data, 1, function(x) paste(x[1:3],collapse='amoxicilin'))
+head(dayID)
+dateID <- sapply(dayID, as.Date, format = "%Y-%m-%d", origin = "2019-10-18")
+head(dateID)
+Data$medicine <- dateID - dateID [which(Data$event == 'amoxicilin')]
+Data$Medicine <- dateID - dateID [which(Data$event == 'amoxicilin')]
+dateID <- sapply(dayID, as.Date, format = "%Y-%m-%d", origin = "2019-4-18")
+head(dateID)
+beren2<-Data
+beren3<- beren2[order(beren2$Medicine) ,]
+write.csv(beren3, 'beren_new.csv', quote=F, row.names=FALSE)
+avgMilk <- mean(beren3$value[Feeds])
+Medicine <- which(beren3$event == "amoxicilin")
+avgMedicine <- mean(beren3$value[Medicine])
+avgMedicine <- tapply(beren3$value[Medicine], beren3$Nap[Medicine], mean)
+avgMedicine <- tapply(beren3$value[Medicine], mean)
+setwd('~/Desktop/Evolution/tasks/Task_02')#
+Data <- read.csv ('http://jonsmitchell.com/data/beren.csv', stringsAsFactors=F)#
+write.csv(Data, 'rawdata.csv', quote=F)#
+length(Data)#
+nrow(Data)#
+ncol(Data)#
+colnames(Data)#
+head(data)#
+Data[1,]#
+Data[2,]#
+Data[1:3,]#
+Data[1:3, 4]#
+Data[1:5, 1:3]#
+Feeds <- which(Data[,9] == 'bottle')#
+berenMilk <- Data[Feeds ,]#
+head(berenMilk)#
+Feeds <- which(Data[,'event'] == 'bottle')#
+head(Feeds)#
+Feeds <- which(Data$event == 'bottle')#
+head(Feeds)#
+dayID <- apply(Data, 1, function(x) paste(x[1:3],collapse='-'))#
+head(dayID)#
+dateID <- sapply(dayID, as.Date, format = "%Y-%m-%d", origin = "2019-04-18")#
+head(dateID)#
+Data$age <- dateID - dateID [which(Data$event == 'birth')]#
+head(data)#
+beren2<-Data#
+beren3<- beren2[order(beren2$age) ,]#
+write.csv(beren3, 'beren_new.csv', quote=F, row.names=FALSE)#
+Feeds <- which(beren3$event == "bottle")#
+avgMilk <- mean(beren3$value[Feeds])
+varFeed <- tapply(beren3$value[Feeds], beren3$age[Feeds], var)
+totalFeed <- tapply(beren3$value[Feeds], beren3$age[Feeds], sum)
+setwd('~/Desktop/Evolution/tasks/Task_02')#
+Data <- read.csv ('http://jonsmitchell.com/data/beren.csv', stringsAsFactors=F)#
+write.csv(Data, 'rawdata.csv', quote=F)#
+length(Data)#
+nrow(Data)#
+ncol(Data)#
+colnames(Data)#
+head(data)#
+Data[1,]#
+Data[2,]#
+Data[1:3,]#
+Data[1:3, 4]#
+Data[1:5, 1:3]#
+Feeds <- which(Data[,9] == 'bottle')#
+berenMilk <- Data[Feeds ,]#
+head(berenMilk)#
+Feeds <- which(Data[,'event'] == 'bottle')#
+head(Feeds)#
+Feeds <- which(Data$event == 'bottle')#
+head(Feeds)#
+dayID <- apply(Data, 1, function(x) paste(x[1:3],collapse='-'))#
+head(dayID)#
+dateID <- sapply(dayID, as.Date, format = "%Y-%m-%d", origin = "2019-04-18")#
+head(dateID)
+head(data)
+Data$Med <- dateID - dateID [which(Data$event == 'amoxicilin')]
+Feeds <- which(Data[,9] == 'bottle')#
+berenMilk <- Data[Feeds ,]#
+head(berenMilk)
+dayID <- apply(Data, 1, function(x) paste(x[1:3],collapse='-'))
+head(dayID)
+dateID <- sapply(dayID, as.Date, format = "%Y-%m-%d", origin = "2019-09-26")
+head(dateID)
+Data$Med <- dateID - dateID [which(Data$event == 'amoxicilin')]
+dateID [which(Data$event == 'amoxicilin')]
+head(data)
+beren2<-Data
+write.csv(beren3, 'beren_new.csv', quote=F, row.names=FALSE)
+beren3<- beren2[order(beren2$amoxicilin) ,]
+dateID <- sapply(dayID, as.Date, format = "%Y-%m-%d", origin = "2019-09-26")
+head(dateID)
+dateID [which(Data$event == 'amoxicilin')]
+head(dataID)
+head(data)
+dateID
+beren2<-Data
+beren3<- beren2[order (beren2$amoxicilin) ,]
+beren3<- beren2(order (beren2$amoxicilin) ,
+write.csv(beren3, 'beren_new.csv', quote=F, row.names=FALSE)
+Feeds <- which(beren3$event == "bottle")
+cor(beren3$value[Feeds], beren3$amoxicilin[Feeds])
+setwd('~/Desktop/Evolution/tasks/Task_02')#
+Data <- read.csv ('http://jonsmitchell.com/data/beren.csv', stringsAsFactors=F)#
+write.csv(Data, 'rawdata.csv', quote=F)#
+length(Data)#
+nrow(Data)#
+ncol(Data)#
+colnames(Data)#
+head(data)#
+Data[1,]#
+Data[2,]#
+Data[1:3,]#
+Data[1:3, 4]#
+Data[1:5, 1:3]#
+Feeds <- which(Data[,9] == 'bottle')#
+berenMilk <- Data[Feeds ,]#
+head(berenMilk)#
+Feeds <- which(Data[,'event'] == 'bottle')#
+head(Feeds)#
+Feeds <- which(Data$event == 'bottle')#
+head(Feeds)#
+dayID <- apply(Data, 1, function(x) paste(x[1:3],collapse='-'))#
+head(dayID)#
+dateID <- sapply(dayID, as.Date, format = "%Y-%m-%d", origin = "2019-04-18")#
+head(dateID)#
+Data$age <- dateID - dateID [which(Data$event == 'birth')]#
+head(data)#
+beren2<-Data#
+beren3<- beren2[order(beren2$age) ,]#
+write.csv(beren3, 'beren_new.csv', quote=F, row.names=FALSE)#
+Feeds <- which(beren3$event == "bottle")#
+avgMilk <- mean(beren3$value[Feeds])#
+avgFeed <- tapply(beren3$value[Feeds], beren3$age[Feeds], mean)#
+varFeed <- tapply(beren3$value[Feeds], beren3$age[Feeds], var)#
+totalFeed <- tapply(beren3$value[Feeds], beren3$age[Feeds], sum)#
+numFeeds <- tapply(beren3$value[Feeds] ,  beren3$age[Feeds], length)#
+head(numFeeds)#
+cor(beren3$value[Feeds], beren3$age[Feeds])#
+cor.test(beren3$value[Feeds], beren3$age[Feeds])#
+berenCor <- cor.test(beren3$value[Feeds], beren3$age[Feeds])#
+head(berenCor)#
+berenANOVA <- aov(beren3$value[Feeds] ~ beren3$caregiver[Feeds])#
+head(berenANOVA)#
+boxplot( beren3$value[Feeds] ~ beren3$caregiver[Feeds], xlab= "who gave the bottle" , ylab = "amount of milk consumed (oz)" )#
+par(las=1, mar=c(5,5,1,1), mgp=c(2, 0.5, 0), tck=-0.01)#
+plot(as.numeric(names(totalFeed)), totalFeed, type="b", pch=16, xlab="age in days", ylab="ounces of milk")#
+abline(h=mean(totalFeed), lty=2, col='red')#
+pdf("r02-totalMilkByDay.pdf", height = 4, width = 4)#
+par(las=1, mar=c(5, 5, 1, 1), mgp=c(2, 0.5, 0), tck=-0.01)#
+plot(as.numeric(names(totalFeed)), totalFeed, type="b", pch=16, xlab="age in days", ylab=" ounces of milk")#
+plot(as.numeric(names(totalFeed)), totalFeed, type="b", pch=16, xlab="age in days", ylab="ounces of milk")#
+abline(h=mean(totalFeed), lty=2, col='red')#
+dev.off() #
+source("http://jonsmitchell.com/code/plotFxn02b.R")#
+unique(beren3$event)#
+beren4 <- beren3[Naps,]#
+startHour <-(beren4$start_hour)#
+startMin <- (beren4$start_minute)#
+stopHour <- (beren4$start_minute)#
+stopHour <-(beren4$end_hour)#
+stopMin <- (beren4$end_minute)#
+startHour#
+startMin#
+stopHour#
+beren4$sleepTime <-((stopHour - startHour)* 60) +(stopMin-startMin)#
+beren4#
+totalNap <- tapply(beren4$sleepTime, beren4$age, sum)#
+totalNap#
+par(las=1, mar=c(5, 5, 1, 1), mgp=c(2,0.5,0), tck=-0.01)#
+plot(as.numeric(names(totalNap)), totalNap, type= "b",pch=16, xlab="age in days", ylab='Nap time in minutes')#
+cor.test(beren4$start_hour,beren4$sleepTime)
+setwd('~/Desktop/Evolution/tasks/Task_02')
+etwd('~/Desktop/Evolution/Tasks/Task_02')#
+# read.csv() reads a file from your computer and stores the information in whatever object you tell it to#
+Data <- read.csv ('http://jonsmitchell.com/data/beren.csv', stringsAsFactors=F)#
+write.csv(Data, 'rawdata.csv', quote=F)#
+#
+length(Data)#
+nrow(Data)#
+ncol(Data)#
+colnames(Data)#
+head(data)#
+Data[1,]#
+Data[2,]#
+Data[1:3,]#
+Data[1:3, 4]#
+Data[1:5, 1:3]#
+#
+Feeds <- which(Data[,9] == 'bottle')#
+berenMilk <- Data[Feeds ,]#
+#
+head(berenMilk)#
+Feeds <- which(Data[,'event'] == 'bottle')#
+head(Feeds)#
+Feeds <- which(Data$event == 'bottle')#
+head(Feeds)#
+dayID <- apply(Data, 1, function(x) paste(x[1:3],collapse='-'))#
+head(dayID)#
+dateID <- sapply(dayID, as.Date, format = "%Y-%m-%d", origin = "2019-04-18")#
+head(dateID)#
+Data$age <- dateID - dateID [which(Data$event == 'birth')]#
+head(data)#
+beren2<-Data#
+beren3<- beren2[order(beren2$age) ,]#
+write.csv(beren3, 'beren_new.csv', quote=F, row.names=FALSE)#
+Feeds <- which(beren3$event == "bottle")#
+avgMilk <- mean(beren3$value[Feeds])#
+avgFeed <- tapply(beren3$value[Feeds], beren3$age[Feeds], mean)#
+varFeed <- tapply(beren3$value[Feeds], beren3$age[Feeds], var)#
+totalFeed <- tapply(beren3$value[Feeds], beren3$age[Feeds], sum)#
+numFeeds <- tapply(beren3$value[Feeds] ,  beren3$age[Feeds], length)#
+head(numFeeds)#
+cor(beren3$value[Feeds], beren3$age[Feeds])#
+cor.test(beren3$value[Feeds], beren3$age[Feeds])#
+berenCor <- cor.test(beren3$value[Feeds], beren3$age[Feeds])#
+head(berenCor)#
+berenANOVA <- aov(beren3$value[Feeds] ~ beren3$caregiver[Feeds])#
+head(berenANOVA)#
+boxplot( beren3$value[Feeds] ~ beren3$caregiver[Feeds], xlab= "who gave the bottle" , ylab = "amount of milk consumed (oz)" )#
+par(las=1, mar=c(5,5,1,1), mgp=c(2, 0.5, 0), tck=-0.01)#
+plot(as.numeric(names(totalFeed)), totalFeed, type="b", pch=16, xlab="age in days", ylab="ounces of milk")#
+abline(h=mean(totalFeed), lty=2, col='red')#
+pdf("r02-totalMilkByDay.pdf", height = 4, width = 4)#
+par(las=1, mar=c(5, 5, 1, 1), mgp=c(2, 0.5, 0), tck=-0.01)#
+plot(as.numeric(names(totalFeed)), totalFeed, type="b", pch=16, xlab="age in days", ylab=" ounces of milk")#
+plot(as.numeric(names(totalFeed)), totalFeed, type="b", pch=16, xlab="age in days", ylab="ounces of milk")#
+abline(h=mean(totalFeed), lty=2, col='red')#
+dev.off() #
+source("http://jonsmitchell.com/code/plotFxn02b.R")#
+unique(beren3$event)#
+beren4 <- beren3[Naps,]#
+startHour <-(beren4$start_hour)#
+startMin <- (beren4$start_minute)#
+stopHour <- (beren4$start_minute)#
+stopHour <-(beren4$end_hour)#
+stopMin <- (beren4$end_minute)#
+startHour#
+startMin#
+stopHour#
+beren4$sleepTime <-((stopHour - startHour)* 60) +(stopMin-startMin)#
+beren4#
+totalNap <- tapply(beren4$sleepTime, beren4$age, sum)#
+totalNap#
+par(las=1, mar=c(5, 5, 1, 1), mgp=c(2,0.5,0), tck=-0.01)#
+plot(as.numeric(names(totalNap)), totalNap, type= "b",pch=16, xlab="age in days", ylab='Nap time in minutes')#
+cor.test(beren4$start_hour,beren4$sleepTime)#
+# These show a negative correlation. #
+# hypothesis: The amount of time that Beren naps decreased as solid food consumption increased #
+# Questions1: The first two hypotheses would be inappropriate because there is not enough data to support them. #
+# Question 2: This graph is difficult to read because of the small x-axis scale which makes the data scrunched together which makes it hard to determine the exact values for each point.#
+#
+Amox <- which(beren3$event == "amoxicilin")#
+amoxData <- beren3[Amox,]#
+head(amoxData)
+Amox <- which(beren3$event == "amoxicilin")
+amoxData <- beren3[Amox,]#
+head(amoxData)
+unique('amoxicilin')
+unique(amoxData)
+head(amoxData)
+unique(amoxData)
+DoseDays <- unique(amoxData)
+head(DoseDays)
+as.character(DoseDays)
+as.character('162')
+as.character(162)
+Amox <- which(beren3$event == "amoxicilin")#
+amoxData <- beren3[Amox,]#
+head(amoxData)#
+#
+# Object 1 = totalFeed on days with amoxilinc#
+	# find the unique days on amoxicilin-- unique(), save as DoseDays#
+#
+	# use DoseDays (unique days for amox) and find feeds on only those days#
+	### trick here is that the NAMES of totalFeed are the days, so we havezto ask it by name, not number. Use as.character(). Call this doseFeedsNA#
+#
+	# remove NAs from your data using na.omit(). #
+doseFeeds <- na.omit(as.data.frame(doseFeedsNA))[,1] # Replace x with whatever you call the totalFeed on dose days#
+# Object 2 = totalFeed on days WITHOUT amox#
+NoAmox <- setdiff(names(totalFeed), as.character(DoseDays))
+setwd("~/Desktop/Evolution/Tasks/Task_05")#
+install.packages("learnPopGen")#
+library("learnPopGen")#
+install.packages("coala")#
+library("coala")#
+install.packages("phytools")#
+library("phytools")
+model <-coal_model(sample_size = 5, loci_number = 10, loci_length = 500, ploidy =2 ) +
+feat_mutation (10) +
+sumstat_trees() +
+sumstat_nucleotide_div()
+stats <- simulate(model, nsim = 1)
+Diversity <- stats$pi
+head(Diversity)
+Nloci <- length(stats$trees)
+t1 <- read.tree(test=stats$trees [[1]][1])
+t1 <- read.tree(test=stats$trees[[1]][1])
+t1 <- read.tree(text=stats$trees [[1]][1])
+plot(t1)
+axisPhylo()
+Age1 <- max(nodeHeights(t1))
+t2 <- read.treee(text=stats$trees[[2]] [1])
+t2 <- read.tree(text=stats$trees[[2]] [1])
+plat (t2)
+plot (t2)
+axisPhylo()
+par(mfro=c(1,2))
+par(mfrow=c(1,2))
+plot(t1)
+axisPhylo()
+plot(t2)
+axisPhylo()
+compare.chronograms(t1, t2)
+t1_1 <- read.tree(test-stats$trees[[1]][1])
+t1_1 <- read.tree(test=stats$trees[[1]][1])
+t1_1 <- read.tree(text=stats$trees[[1]][1])
+t1_2 <- read.tree(text=stats$trees[[1]][2])
+t2 <- read.tree(text=stats$trees[[2]][1])
+t1_2 <- read.tree(text=stats$trees[[1]][2])
+setwd("~/Desktop/Evolution/Tasks/Task_05")#
+install.packages("learnPopGen")#
+library("learnPopGen")#
+install.packages("coala")#
+library("coala")#
+install.packages("phytools")#
+library("phytools")#
+model <-coal_model(sample_size = 5, loci_number = 10, loci_length = 500, ploidy =2 ) +#
+feat_mutation (10) +#
+sumstat_trees() +#
+sumstat_nucleotide_div()#
+sumstat_nucleotide_div()#
+stats <- simulate(model, nsim = 1)#
+Diversity <- stats$pi#
+head(Diversity)#
+# no, the numbers are not the same it ranges from 16.644 to 4.46 the difference are caused by the differnt loci #
+Nloci <- length(stats$trees)#
+t1 <- read.tree(test=stats$trees[[1]][1])#
+axisPhylo()#
+##
+Age1 <-max(nodeHeights(t1))#
+t2 <-read.tree(text=stats$trees[[2]][1])#
+plot(t2)#
+axisPhylo()
+par(mfrow=c(1,2))
+plot(t1)
+t1 <- read.tree(text=stats$trees[[1]][1])#
+axisPhylo()#
+##
+Age1 <-max(nodeHeights(t1))#
+t2 <-read.tree(text=stats$trees[[2]][1])#
+plot(t2)#
+axisPhylo()#
+# no they do not match.  Thep plots differ in which is more closely related to one another#
+par(mfrow=c(1,2))#
+plot(t1)
+axisPhylo()
+plot(t2)
+axisPhylo()
+compare.chronograms(t1, t2)
+t1_1 <- read.tree(text=stats$trees[[1]][1])
+t1_2 <- read.tree(text=stats$trees[[1]][2])
+setwd("~/Desktop/Evolution/Tasks/Task_05")#
+install.packages("learnPopGen")#
+library("learnPopGen")#
+install.packages("coala")#
+library("coala")#
+install.packages("phytools")#
+library("phytools")#
+model <-coal_model(sample_size = 5, loci_number = 10, loci_length = 500, ploidy =2 ) +#
+feat_mutation (10) +#
+sumstat_trees() +#
+sumstat_nucleotide_div()#
+sumstat_nucleotide_div()#
+stats <- simulate(model, nsim = 1)#
+Diversity <- stats$pi#
+head(Diversity)#
+# no, the numbers are not the same it ranges from 16.644 to 4.46 the difference are caused by the differnt loci #
+Nloci <- length(stats$trees)#
+t1 <- read.tree(text=stats$trees[[1]][1])#
+axisPhylo()#
+##
+Age1 <-max(nodeHeights(t1))#
+t2 <-read.tree(text=stats$trees[[2]][1])#
+plot(t2)#
+axisPhylo()#
+# no they do not match.  Thep plots differ in which is more closely related to one another and the timing differs#
+par(mfrow=c(1,2))#
+plot(t1)#
+axisPhylo()#
+plot(t2)#
+axisPhylo()#
+compare.chronograms(t1, t2)#
+t1_1 <- read.tree(text=stats$trees[[1]][1])#
+t1_2 <- read.tree(text=stats$trees[[1]][2])
+t1_2 <- read.tree(text=stats$trees [[1]][2])
+install.packages("learnPopGen")
+library("learnPopGen")
+install.packages("coala")
+library("coala")
+install.packages("phytools")
+library("phytools")
+model<- coal_model(sample_size = 5, loci_number = 10, loci_length = 500, ploidy = 2) +
+feat_mutation(10) +
+feat_recombination(10) +
+sumstat_trees() +
+sumstat_nucleotide_div()
+stats<- simulate(model, nsim = 1)
+Diversity<- stats$pi
+Nloci<- length(stats$trees)
+t1<- read.tree(text=stats$trees[[1]][1])
+plot(t1)
+axisPhylo()
+Age1 <- max(nodeHeights(t1))
+t2<- read.tree(text=stats$trees[[2]][1])
+plot(t2)
+axisPhylo()
+par(mfrow=c(1,2))
+plot(t1)
+axisPhylo()
+plot(t2)
+axisPhylo()
+compare.chronograms(t1, t2)
+t1_1 <- read.tree(text=stats$trees [[1]][1])
+t1_2 <- read.tree(text=stats$trees [[1]][2])
+compare.chronograms(t1_1, t1_2)
+for (locus in 1:Nloci) {
+ntrees <- length(stats$trees[[locus]])
+for (n in 1:ntrees) {
+if (locus == 1 && n == 1) {
+outPhy <- read.tree(text=stats$trees[[locus]][n])
+}
+else {
+outPhy <- ape:::c.phylo(outPhy, read.tree(text=stats$trees[[locus]][n]))
+}
+par(mfrow=c(1,1))
+densityTree(outPhy)
+model3 <- coal_model(10, 50) +
+feat_mutation(par_prior("theta", sample.int(100, 1))) +
+sumstat_nucleotide_div()
+stats <- simulate(model3, nsim = 40)
+mean_pi <- sapply(stats, function(x) mean(x$pi))
+theta<- sapply(stats, function(x) x$pars [["theta"]])
+install.packages("learnPopGen")
+library("learnPopGen")
+install.packages("coala")
+library("coala")
+install.packages("phytools")
+library("phytools")
+model<- coal_model(sample_size = 5, loci_number = 10, loci_length = 500, ploidy = 2) +
+feat_mutation(10) +
+feat_recombination(10) +
+sumstat_trees() +
+sumstat_nucleotide_div()
+stats<- simulate(model, nsim = 1)
+Diversity<- stats$pi
+# no, the numbers are not the same it ranges from 16.644 to 4.46 the difference are caused by the differnt loci
+Nloci<- length(stats$trees)
+t1<- read.tree(text=stats$trees[[1]][1])
+plot(t1)
+axisPhylo()
+Age1 <- max(nodeHeights(t1))
+t2<- read.tree(text=stats$trees[[2]][1])
+plot(t2)
+axisPhylo()
+par(mfrow=c(1,2))
+install.packages("learnPopGen")
+library("learnPopGen")
+install.packages("coala")
+library("coala")
+install.packages("phytools")
+library("phytools")
+model<- coal_model(sample_size = 5, loci_number = 10, loci_length = 500, ploidy = 2) +
+feat_mutation(10) +
+sumstat_trees() +
+sumstat_nucleotide_div()
+stats<- simulate(model, nsim = 1)
+Diversity<- stats$pi
+# no, the numbers are not the same it ranges from 16.644 to 4.46 the difference are caused by the differnt loci
+Nloci<- length(stats$trees)
+t1<- read.tree(text=stats$trees[[1]][1])
+plot(t1)
+axisPhylo()
+Age1 <- max(nodeHeights(t1))
+t2<- read.tree(text=stats$trees[[2]][1])
+plot(t2)
+axisPhylo()
+par(mfrow=c(1,2))
+plot(t1)
+axisPhylo()
+plot(t2)
+axisPhylo()
+# no they do not match.  Thep plots differ in which is more closely related to one another and the timing differs
+compare.chronograms(t1, t2)
+par(mfrow=c(1,2))
+plot(t1)
+axisPhylo()
+plot(t2)
+axisPhylo()
+compare.chronograms(t1, t2)
+t1_1 <- read.tree(text=stats$trees [[1]][1])
+t1_2 <- read.tree(text=stats$trees [[1]][2])
+compare.chronograms(t1_1, t1_2)
+for (locus in 1:Nloci) {
+# 1 this starts with #
+# 2 #
+# 3 #
+# 4#
+# 5#
+install.packages("learnPopGen")#
+library("learnPopGen")#
+install.packages("coala")#
+library("coala")#
+install.packages("phytools")#
+library("phytools")#
+model<- coal_model(sample_size = 5, loci_number = 10, loci_length = 500, ploidy = 2) +#
+feat_mutation(10) +#
+feat_recombination(10) +#
+sumstat_trees() +#
+sumstat_nucleotide_div()#
+stats<- simulate(model, nsim = 1)#
+Diversity<- stats$pi#
+# no, the numbers are not the same it ranges from 16.644 to 4.46 the difference are caused by the differnt loci #
+Nloci<- length(stats$trees)#
+t1<- read.tree(text=stats$trees[[1]][1])#
+plot(t1)#
+axisPhylo()#
+# 6#
+Age1 <- max(nodeHeights(t1))#
+t2<- read.tree(text=stats$trees[[2]][1])#
+plot(t2)#
+axisPhylo()#
+# the first is 2 and the second is 1#
+# no they do not match.  Thep plots differ in which is more closely related to one another and the timing differs#
+par(mfrow=c(1,2))#
+plot(t1)#
+axisPhylo()#
+plot(t2)#
+axisPhylo()#
+compare.chronograms(t1, t2)#
+t1_1 <- read.tree(text=stats$trees [[1]][1])#
+t1_2 <- read.tree(text=stats$trees [[1]][2])#
+compare.chronograms(t1_1, t1_2)
+for (locus in 1:Nloci) {
+install.packages("learnPopGen")#
+library("learnPopGen")#
+install.packages("coala")#
+library("coala")#
+install.packages("phytools")#
+library("phytools")#
+model<- coal_model(sample_size = 5, loci_number = 10, loci_length = 500, ploidy = 2) +#
+feat_mutation(10) +#
+feat_recombination(10) +#
+sumstat_trees() +#
+sumstat_nucleotide_div()#
+stats<- simulate(model, nsim = 1)#
+Diversity<- stats$pi#
+# no, the numbers are not the same it ranges from 16.644 to 4.46 the difference are caused by the differnt loci #
+Nloci<- length(stats$trees)#
+t1<- read.tree(text=stats$trees[[1]][1])#
+plot(t1)#
+axisPhylo()#
+# 6#
+Age1 <- max(nodeHeights(t1))#
+t2<- read.tree(text=stats$trees[[2]][1])#
+plot(t2)#
+axisPhylo()#
+# the first is 2 and the second is 1#
+# no they do not match.  Thep plots differ in which is more closely related to one another and the timing differs#
+par(mfrow=c(1,2))#
+plot(t1)#
+axisPhylo()#
+plot(t2)#
+axisPhylo()#
+compare.chronograms(t1, t2)#
+t1_1 <- read.tree(text=stats$trees [[1]][1])#
+t1_2 <- read.tree(text=stats$trees [[1]][2])#
+compare.chronograms(t1_1, t1_2)#
+for (locus in 1:Nloci) {#
+	ntrees <- length(stats$trees[[locus]])#
+	for (n in 1:ntrees) {#
+		if (locus == 1 && n == 1) {#
+			outPhy <- read.tree(text=stats$trees[[locus]][n])#
+			}#
+			else {#
+				outPhy <- ape:::c.phylo(outPhy, read.tree(text=stats$trees[[locus]][n]))#
+				}#
+			}#
+		}		#
+par(mfrow=c(1,1))#
+densityTree(outPhy)#
+model3 <- coal_model(10, 50) +#
+feat_mutation(par_prior("theta", sample.int(100, 1))) +#
+sumstat_nucleotide_div()#
+stats <- simulate(model3, nsim = 40)#
+mean_pi <- sapply(stats, function(x) mean(x$pi))#
+theta<- sapply(stats, function(x) x$pars [["theta"]])
+# 1 this starts with #
+# 2 #
+# 3 #
+# 4#
+# 5#
+install.packages("learnPopGen")#
+library("learnPopGen")#
+install.packages("coala")#
+library("coala")#
+install.packages("phytools")#
+library("phytools")#
+model<- coal_model(sample_size = 5, loci_number = 10, loci_length = 500, ploidy = 2) +#
+feat_mutation(10) +#
+feat_recombination(10) +#
+sumstat_trees() +#
+sumstat_nucleotide_div()#
+stats<- simulate(model, nsim = 1)#
+Diversity<- stats$pi#
+# no, the numbers are not the same it ranges from 16.644 to 4.46 the difference are caused by the differnt loci #
+Nloci<- length(stats$trees)#
+t1<- read.tree(text=stats$trees[[1]][1])#
+plot(t1)#
+axisPhylo()#
+# 6#
+Age1 <- max(nodeHeights(t1))#
+t2<- read.tree(text=stats$trees[[2]][1])#
+plot(t2)#
+axisPhylo()#
+# the first is 2 and the second is 1#
+# no they do not match.  Thep plots differ in which is more closely related to one another and the timing differs#
+par(mfrow=c(1,2))#
+plot(t1)#
+axisPhylo()#
+plot(t2)#
+axisPhylo()#
+compare.chronograms(t1, t2)#
+t1_1 <- read.tree(text=stats$trees [[1]][1])#
+t1_2 <- read.tree(text=stats$trees [[1]][2])#
+compare.chronograms(t1_1, t1_2)#
+for (locus in 1:Nloci) {#
+	ntrees <- length(stats$trees[[locus]])#
+	for (n in 1:ntrees) {#
+		if (locus == 1 && n == 1) {#
+			outPhy <- read.tree(text=stats$trees[[locus]][n])#
+			}#
+			else {#
+				outPhy <- ape:::c.phylo(outPhy, read.tree(text=stats$trees[[locus]][n]))#
+				}#
+			}#
+		}		#
+par(mfrow=c(1,1))#
+densityTree(outPhy)#
+model3 <- coal_model(10, 50) +#
+feat_mutation(par_prior("theta", sample.int(100, 1))) +#
+sumstat_nucleotide_div()#
+stats <- simulate(model3, nsim = 40)#
+mean_pi <- sapply(stats, function(x) mean(x$pi))#
+theta<- sapply(stats, function(x) x$pars [["theta"]])
+plot (theta)
++ fit regression line
+# 1 this starts with 10 alleles #
+# 2 2.77 Ne generations #
+# 3 #
+# 4#
+# 5#
+install.packages("learnPopGen")#
+library("learnPopGen")#
+install.packages("coala")#
+library("coala")#
+install.packages("phytools")#
+library("phytools")#
+model<- coal_model(sample_size = 5, loci_number = 10, loci_length = 500, ploidy = 2) +#
+feat_mutation(10) +#
+feat_recombination(10) +#
+sumstat_trees() +#
+sumstat_nucleotide_div()#
+stats<- simulate(model, nsim = 1)#
+Diversity<- stats$pi#
+# no, the numbers are not the same it ranges from 16.644 to 4.46 the difference are caused by the differnt loci #
+Nloci<- length(stats$trees)#
+t1<- read.tree(text=stats$trees[[1]][1])#
+plot(t1)#
+axisPhylo()#
+# 6#
+Age1 <- max(nodeHeights(t1))#
+t2<- read.tree(text=stats$trees[[2]][1])#
+plot(t2)#
+axisPhylo()#
+# the first is 2 and the second is 1#
+# no they do not match.  Thep plots differ in which is more closely related to one another and the timing differs#
+par(mfrow=c(1,2))#
+plot(t1)#
+axisPhylo()#
+plot(t2)#
+axisPhylo()#
+compare.chronograms(t1, t2)#
+t1_1 <- read.tree(text=stats$trees [[1]][1])#
+t1_2 <- read.tree(text=stats$trees [[1]][2])#
+compare.chronograms(t1_1, t1_2)#
+for (locus in 1:Nloci) {#
+	ntrees <- length(stats$trees[[locus]])#
+	for (n in 1:ntrees) {#
+		if (locus == 1 && n == 1) {#
+			outPhy <- read.tree(text=stats$trees[[locus]][n])#
+			}#
+			else {#
+				outPhy <- ape:::c.phylo(outPhy, read.tree(text=stats$trees[[locus]][n]))#
+				}#
+			}#
+		}		#
+par(mfrow=c(1,1))#
+densityTree(ou
+densityTree(outPhy)
+# 1 this starts with 10 alleles #
+# 2 2.77 Ne generations #
+# 3 #
+# 4#
+# 5#
+install.packages("learnPopGen")#
+library("learnPopGen")#
+install.packages("coala")#
+library("coala")#
+install.packages("phytools")#
+library("phytools")#
+model<- coal_model(sample_size = 5, loci_number = 10, loci_length = 500, ploidy = 2) +#
+feat_mutation(10) +#
+feat_recombination(10) +#
+sumstat_trees() +#
+sumstat_nucleotide_div()#
+stats<- simulate(model, nsim = 1)#
+Diversity<- stats$pi#
+# no, the numbers are not the same it ranges from 16.644 to 4.46 the difference are caused by the differnt loci #
+Nloci<- length(stats$trees)#
+t1<- read.tree(text=stats$trees[[1]][1])#
+plot(t1)#
+axisPhylo()#
+# 6#
+Age1 <- max(nodeHeights(t1))#
+t2<- read.tree(text=stats$trees[[2]][1])#
+plot(t2)#
+axisPhylo()#
+# the first is 2 and the second is 1#
+# no they do not match.  Thep plots differ in which is more closely related to one another and the timing differs#
+par(mfrow=c(1,2))#
+plot(t1)#
+axisPhylo()#
+plot(t2)#
+axisPhylo()#
+compare.chronograms(t1, t2)#
+t1_1 <- read.tree(text=stats$trees [[1]][1])#
+t1_2 <- read.tree(text=stats$trees [[1]][2])#
+compare.chronograms(t1_1, t1_2)#
+for (locus in 1:Nloci) {#
+	ntrees <- length(stats$trees[[locus]])#
+	for (n in 1:ntrees) {#
+		if (locus == 1 && n == 1) {#
+			outPhy <- read.tree(text=stats$trees[[locus]][n])#
+			}#
+			else {#
+				outPhy <- ape:::c.phylo(outPhy, read.tree(text=stats$trees[[locus]][n]))#
+				}#
+			}#
+		}		#
+par(mfrow=c(1,1))#
+densityTree(outPhy)#
+model3 <- coal_model(10, 50) +#
+feat_mutation(par_prior("theta", sample.int(100, 1))) +#
+sumstat_nucleotide_div()#
+stats <- simulate(model3, nsim = 40)#
+mean_pi <- sapply(stats, function(x) mean(x$pi))#
+theta<- sapply(stats, function(x) x$pars [["theta"]])
+par(mfrow=c(1,1))#
+densityTree(outPhy)
+compare.chronograms(theta, mean_pi)
+model3 <- coal_model(10, 50) +#
+feat_mutation(par_prior("theta", sample.int(100, 1))) +#
+sumstat_nucleotide_div()#
+stats <- simulate(model3, nsim = 40)#
+mean_pi <- sapply(stats, function(x) mean(x$pi))#
+theta<- sapply(stats, function(x) x$pars [["theta"]])#
+compare.chronograms(theta, mean_pi)
+plot(mean_pi, theta)
+abline(lm(mean_pi ~ theta))
