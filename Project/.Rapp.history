@@ -1,0 +1,4 @@
+setwd("~/Desktop/Evolution/Project")#
+mydata <- read.csv ("Evolutionproject.csv")#
+mydata_PTW_CW <- subset (mydata, Species == "Vidua macroura" | Species == "Estrilda astrild")
+boxplot (DeltaTime.s. ~ Species, data = Species, ylab = "Call time(s)")

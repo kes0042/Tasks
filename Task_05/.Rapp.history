@@ -1,69 +1,3 @@
-source("http://jonsmitchell.com/code/plotFxn02b.R")#
-unique(beren3$event)
-beren4 <- beren3[Amoxicilin,]
-beren4 <- beren3[amoxicilin,]
-setwd('~/Desktop/Evolution/tasks/Task_02')#
-Data <- read.csv ('http://jonsmitchell.com/data/beren.csv', stringsAsFactors=F)#
-write.csv(Data, 'rawdata.csv', quote=F)#
-length(Data)#
-nrow(Data)#
-ncol(Data)#
-colnames(Data)#
-head(data)#
-Data[1,]#
-Data[2,]#
-Data[1:3,]#
-Data[1:3, 4]#
-Data[1:5, 1:3]#
-Feeds <- which(Data[,9] == 'bottle')#
-berenMilk <- Data[Feeds ,]#
-head(berenMilk)#
-Feeds <- which(Data[,'event'] == 'bottle')#
-head(Feeds)#
-Feeds <- which(Data$event == 'bottle')#
-head(Feeds)#
-dayID <- apply(Data, 1, function(x) paste(x[1:3],collapse='-'))#
-head(dayID)#
-dateID <- sapply(dayID, as.Date, format = "%Y-%m-%d", origin = "2019-04-18")#
-head(dateID)#
-Data$age <- dateID - dateID [which(Data$event == 'birth')]#
-head(data)#
-beren2<-Data#
-beren3<- beren2[order(beren2$age) ,]#
-write.csv(beren3, 'beren_new.csv', quote=F, row.names=FALSE)#
-Feeds <- which(beren3$event == "bottle")
-head(numFeeds)
-avgMilk <- mean(beren3$value[Feeds])#
-avgFeed <- tapply(beren3$value[Feeds], beren3$age[Feeds], mean)#
-varFeed <- tapply(beren3$value[Feeds], beren3$age[Feeds], var)#
-totalFeed <- tapply(beren3$value[Feeds], beren3$age[Feeds], sum)#
-numFeeds <- tapply(beren3$value[Feeds] ,  beren3$age[Feeds], length)#
-head(numFeeds)
-cor(beren3$value[Feeds], beren3$amoxicilin [Feeds])
-Data("amoxicilin")
-numMedicine <- tapply(beren3$value[amoxicilin])
-setwd('~/Desktop/Evolution/tasks/Task_02')#
-Data <- read.csv ('http://jonsmitchell.com/data/beren.csv', stringsAsFactors=F)#
-write.csv(Data, 'rawdata.csv', quote=F)
-Feeds <- which(Data[,'event'] == 'bottle')
-head(Feeds)
-dayID <- apply(Data, 1, function(x) paste(x[1:3],collapse='-'))
-head(dayID)
-Data$medicine <- dateID - dateID [which(Data$event == 'amoxicilin')]
-setwd('~/Desktop/Evolution/tasks/Task_02')#
-Data <- read.csv ('http://jonsmitchell.com/data/beren.csv', stringsAsFactors=F)#
-write.csv(Data, 'rawdata.csv', quote=F)
-Medicine <- which(Data[,9] == 'amoxicilin')
-berenMedicine <- Data[Medicine ,]
-head(berenMedicine)
-Medicine <- which(Data[,'event'] == 'amoxicilin')
-head(Medicine)
-dayID <- apply(Data, 1, function(x) paste(x[1:3],collapse='-'))
-head(dayID)
-dayID <- apply(Data, 1, function(x) paste(x[1:3],collapse='amoxicilin'))
-head(dayID)
-dateID <- sapply(dayID, as.Date, format = "%Y-%m-%d", origin = "2019-10-18")
-head(dateID)
 Data$medicine <- dateID - dateID [which(Data$event == 'amoxicilin')]
 Data$Medicine <- dateID - dateID [which(Data$event == 'amoxicilin')]
 dateID <- sapply(dayID, as.Date, format = "%Y-%m-%d", origin = "2019-4-18")
@@ -838,3 +772,96 @@ theta<- sapply(stats, function(x) x$pars [["theta"]])#
 compare.chronograms(theta, mean_pi)
 plot(mean_pi, theta)
 abline(lm(mean_pi ~ theta))
+install.packages("learnPopGen")#
+library("learnPopGen")#
+install.packages("coala")#
+library("coala")#
+install.packages("phytools")#
+library("phytools")#
+model<- coal_model(sample_size = 5, loci_number = 10, loci_length = 500, ploidy = 2) +#
+feat_mutation(10) +#
+feat_recombination(10) +#
+sumstat_trees() +#
+sumstat_nucleotide_div()#
+stats<- simulate(model, nsim = 1)#
+Diversity<- stats$pi#
+# no, the numbers are not the same it ranges from 16.644 to 4.46 the difference are caused by the differnt loci #
+Nloci<- length(stats$trees)#
+t1<- read.tree(text=stats$trees[[1]][1])#
+plot(t1)#
+axisPhylo()#
+# 6 may there is an exiction or identical alleles #
+Age1 <- max(nodeHeights(t1))#
+t2<- read.tree(text=stats$trees[[2]][1])#
+plot(t2)#
+axisPhylo()#
+# the first is 2 and the second is 1 so no it is not the same #
+# no they do not match.  Thep plots differ in which is more closely related to one another and the timing differs#
+par(mfrow=c(1,2))#
+plot(t1)#
+axisPhylo()#
+plot(t2)#
+axisPhylo()#
+compare.chronograms(t1, t2)#
+t1_1 <- read.tree(text=stats$trees [[1]][1])#
+t1_2 <- read.tree(text=stats$trees [[1]][2])#
+compare.chronograms(t1_1, t1_2)#
+for (locus in 1:Nloci) {#
+	ntrees <- length(stats$trees[[locus]])#
+	for (n in 1:ntrees) {#
+		if (locus == 1 && n == 1) {#
+			outPhy <- read.tree(text=stats$trees[[locus]][n])#
+			}#
+			else {#
+				outPhy <- ape:::c.phylo(outPhy, read.tree(text=stats$trees[[locus]][n]))#
+				}#
+			}#
+		}		#
+par(mfrow=c(1,1))#
+densityTree(outPhy)#
+model3 <- coal_model(10, 50) +#
+feat_mutation(par_prior("theta", sample.int(100, 1))) +#
+sumstat_nucleotide_div()#
+stats <- simulate(model3, nsim = 40)#
+mean_pi <- sapply(stats, function(x) mean(x$pi))#
+theta<- sapply(stats, function(x) x$pars [["theta"]])#
+plot(mean_pi, theta)#
+abline(lm(mean_pi ~ theta))
+coalescent.plot(n=5, ngen=30, col.order="alternating")
+oject <-coalescent.ploy()
+oject <-coalescent.plot()
+object <-coalescent.plot()
+test <-coalescent.plot()
+plot(test)
+coalescent.plot(n=12, ngen=30, col.order="alternating")#
+test <-coalescent.plot()#
+print(test)#
+plot(test)
+coalescent.plot(n=10, ngen=30, col.order="alternating")#
+test <-coalescent.plot()#
+print(test)#
+plot(test)
+coalescent.plot(n=5, ngen=35, col.order="alternating")#
+test <-coalescent.plot()#
+print(test)#
+plot(test)
+coalescent.plot(n=5, ngen=45, col.order="alternating")#
+test <-coalescent.plot()#
+print(test)#
+plot(test)
+coalescent.plot(n=5, ngen=45, col.order="alternating")
+coalescent.plot(n=5, ngen=55, col.order="alternating")
+coalescent.plot(n=5, ngen=50, col.order="alternating")
+coalescent.plot(n=5, ngen=60, col.order="alternating")
+coalescent.plot(n=5, ngen=67, col.order="alternating")
+coalescent.plot(n=5, ngen=69, col.order="alternating")
+coalescent.plot(n=5, ngen=45, col.order="alternating")
+coalescent.plot(n=5, ngen=49, col.order="alternating")
+coalescent.plot(n=5, ngen=49, col.order="alternating")
+coalescent.plot(n=5, ngen=15, col.order="alternating")
+coalescent.plot(n=5, ngen=12, col.order="alternating")
+coalescent.plot(n=5, ngen=49, col.order="alternating")
+coalescent.plot(n=5, ngen=49, col.order="alternating")
+coalescent.plot(n=5, ngen=49, col.order="alternating")
+coalescent.plot(n=5, ngen=5, col.order="alternating")
+coalescent.plot(n=5, ngen=0, col.order="alternating")
