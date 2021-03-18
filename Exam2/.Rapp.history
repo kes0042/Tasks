@@ -1,0 +1,40 @@
+setwd("~/Desktop/Evolution/Tasks/Exam2")
+Examdata <- read.csv ("dataexam")
+Data <- read.csv ("dataexam.csv")
+Data <-read.csv ("dataexam.csv")
+Data <-read.csv ("~/Desktop/Evolution/Tasks/Exam2/dataexam.csv")
+Data <-read.csv ("dataexam.csv")
+setwd("~/Desktop/Evolution/Tasks/Exam2")
+setwd("~/Desktop/Evolution/Tasks/Exam2")
+Data <- read.csv ("Exam2.csv")
+Data <- read.csv ("Exam2.csv")
+Data <- read.csv ("Exam2.csv")
+cat("\n", file = file.choose(), append = TRUE)
+head(Data)
+HWE<- function(p) {#
+aa<- p^2#
+ab<- 2 * p * (1-p)#
+bb<- (1-p)^2
+return(c(aa=aa, ab=ab, bb=bb))	}
+HWE(0.5)
+HWE<- function(p) {#
+aa<- p^2#
+ab<- 2 * p * (1-p)#
+bb<- (1-p)^2#
+return(c(aa=aa, ab=b, bb=b))	}#
+HWE(0.5)
+Data <- read.csv ("Exam2.csv")#
+cat("\n", file = file.choose(), append = TRUE)
+head(Data)
+HWE<- function(p) {#
+aa<- p^2#
+ab<- 2 * p * (1-p)#
+bb<- (1-p)^2#
+return(c(aa=aa, ab=b, bb=b))	}#
+HWE(0.5)
+HWE<- function(p) {#
+aa<- p^2#
+ab<- 2 * p * (1-p)#
+bb<- (1-p)^2#
+return(c(aa=aa, b=bb, b=ab))	}#
+HWE(0.5)
