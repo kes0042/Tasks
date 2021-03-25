@@ -1,6 +1,3 @@
-plot(show.tip.label = FALSE)
-plotTree(AnolisTree,offset=1, show.tip.label=FALSE)
-plotTree(AnolisTree,frame ='circle')
 plotTree(AnolisTree,direction ='circle')
 plotTree(AnolisTree,frame ='circle')
 plotTree(AnolisTree,frame ='right')
@@ -169,6 +166,7 @@ nodelabels (frame="circle", bg='white', cex=1)
 vert.tree
 str( vert.tree)
 tree <- read.tree(text= "(((A,B), (C,D)), E) ;")
+tree <- compute.brlen(tree)
 plotTree (tree, offset=1)
 tiplabels (frame="circle", bg='lightblue', cex=1)
 nodelabels (frame="circle", bg='white', cex=1)
@@ -177,6 +175,49 @@ tree$edge
 AnolisTree <- force.ultrametric (read.tree("https://jonsmitchell.com/data/anolis.tre"))
 par(las=1)
 hist(AnolisTree$edge.length, col= 'black', border='white', main="", xlab=" edge lengths for the Anolis tree", ylim=c(0, 50), xlim=c(0,6))
+tipEdges <-which(AnolisTree$edge[, 2] <= Ntip (AnolisTree))
+Lengths <-AnolisTree$edge.length
+names(Lengths) <- AnolisTree$tip.label
+names(Lengths) [which(Lengths == min(Lengths))]
+plot(AnolisTree, cex=0.25)
+Labs <- sapply (AnolisTree$edge.length, round, digits=2)
+edgelabels(text=Labs, cex= 0.25)
+EdgesThatAreTips <- which(Anolistree$edge[,2] <= Ntip(AnolisTree))
+EdgesThatAreTips <- which(Anolistree$edge[,2] <= Ntip(Tree))
+EdgesThatAreTips <- which(AnolisTree$edge[,2] <= Ntip(AnolisTree))
+TipLengths <- AnolisTree$edge.length[EdgesThatAreTips]
+AnolisTree$edge.length
+ShortestTips <- which(TipLengths == min(TipLengths))
+tree_no_short <- drop.tip(tree, ShortestTips[1])
+plot(tree_no_short)
+EdgesThatAreTips <- which(AnolisTree$edge[,2] <= Ntip(AnolisTree))
+TipLengths <- AnolisTree$edge.length[EdgesThatAreTips]
+AnolisTree$edge.length
+AnolisShortestTips <- which(TipLengths == min(TipLengths))
+Anolistree_no_short <- drop.tip(tree, ShortestTips[1])
+Anolistree_no_short <- drop.tip(tree, AnolisShortestTips[1])
+plot(Anolistree_no_short)
+setwd("~/Desktop/Evolution/Tasks/Task_07")
+install.packages("phytools")
+library("phytools")
+install.packages("ape")
+text.string <- "(((((((cow, pig), whale), (bat, (lemur, human))),(robin, iguana)), coelacenth), (gold_fish, trout)), shark) ;"
+vert.tree <-read.tree (text=text.string)
+plot(vert.tree, edge.width=2)
+nodelabels (frame="circle", bg='white', cex=1)
+plot(vert.tree, edge.width=2)
+nodelabels (frame="circle", bg='white', cex=1)
+vert.tree
+str( vert.tree)
+tree <- read.tree(text= "(((A,B), (C,D)), E) ;")
+tree <- compute.brlen(tree)
+plotTree (tree, offset=1)
+tiplabels (frame="circle", bg='lightblue', cex=1)
+nodelabels (frame="circle", bg='white', cex=1)
+tree$tip.label
+tree$edge
+AnolisTree <- force.ultrametric (read.tree("https://jonsmitchell.com/data/anolis.tre"))
+par(las=1)
 hist(AnolisTree$edge.length, col= 'black', border='white', main="", xlab=" edge lengths for the Anolis tree", ylim=c(0, 50), xlim=c(0,6))
 tipEdges <-which(AnolisTree$edge[, 2] <= Ntip (AnolisTree))
 Lengths <-AnolisTree$edge.length
@@ -185,104 +226,32 @@ names(Lengths) [which(Lengths == min(Lengths))]
 plot(AnolisTree, cex=0.25)
 Labs <- sapply (AnolisTree$edge.length, round, digits=2)
 edgelabels(text=Labs, cex= 0.25)
-# each edge has a length, and they're in order.    First value of edge length is the length of the edge defined by the first row of the edge matrix.
-?plot.phylo
-plotTree(AnolisTree,offset=1, show.tip.label=FALSE)
-anolis <- collapseTree(AnolisTree)
-anolis <- collapseTree(AnolisTree)
-plotTree(AnolisTree,offset=1, show.tip.label=TRUE, tip.color="red")
-AnolisTree <- force.ultrametric(read.tree("https://jonsmitchell.com/data/anolis.tre"))
-n <- length (AnolisTree$tip.label)
-ee <- setNames (AnolisTree$edge.length[sapply(1:n,function(x,y)which(y==x), y=AnolisTree$edge[,2])], AnolisTree$tip.label)
-ee <- setNames (AnolisTree$edge.length[sapply(1:n,function(x,y)which(y==x), y=AnolisTree$edge[,2])], AnolisTree$tip.label)
-AnolisTree <- pbtree (n=10)
-n <- length (AnolisTree$tip.label)
-ee <- setNames (AnolisTree$edge.length[sapply(1:n,function(x,y)which(y==x), y=AnolisTree$edge[,2])], AnolisTree$tip.label)
-ee <- setNames (AnolisTree$edge.length[sapply(1:n,function(x,y)which(y==x), y=AnolisTree$edge[,2])], AnolisTree$tip.label)
-ee
-plot (AnolisTree, cex=1)
-edgelabels(AnolisTree$edge.length)
-AnolisTree <- force.ultrametric(read.tree("https://jonsmitchell.com/data/anolis.tre"))#
-n <- length (AnolisTree$tip.label)#
-ee <- setNames (AnolisTree$edge.length[sapply(1:n,function(x,y)which(y==x), y=AnolisTree$edge[,2])], AnolisTree$tip.label)#
-AnolisTree <- pbtree (n=10)#
-AnolisTree$edge.length <- round (AnolisTree$edge.length, 0.5)#
-n <- length (AnolisTree$tip.label)#
-ee <- setNames (AnolisTree$edge.length[sapply(1:n,function(x,y)which(y==x), y=AnolisTree$edge[,2])], AnolisTree$tip.label)
-ee
-AnolisTree <- force.ultrametric(read.tree("https://jonsmitchell.com/data/anolis.tre"))
-plot(AnolisTree)
-plot(AnolisTree, cex=.6)
-AnolisTree
-str(AnolisTree)
-which(AnolisTree$edge.lenght == min(AnolisTree$edge.length))
-which(AnolisTree$edge.length == min(AnolisTree$edge.length))
-AnolisTree$edge
-tree <- read.tree(text= "(((A,B), (C,D)), E) ;")#
-plotTree (tree, offset=1)
+EdgesThatAreTips <- which(AnolisTree$edge[,2] <= Ntip(AnolisTree))
+TipLengths <- AnolisTree$edge.length[EdgesThatAreTips]
+AnolisTree$edge.length
+AnolisShortestTips <- which(TipLengths == min(TipLengths))
+Anolistree_no_short <- drop.tip(tree, AnolisShortestTips[1])
+plot(Anolistree_no_short)
+AnolisTree <- force.ultrametric (read.tree("https://jonsmitchell.com/data/anolis.tre"))
+par(las=1)
+hist(AnolisTree$edge.length, col= 'black', border='white', main="", xlab=" edge lengths for the Anolis tree", ylim=c(0, 50), xlim=c(0,6))
+tipEdges <-which(AnolisTree$edge[, 2] <= Ntip (AnolisTree))
+Lengths <-AnolisTree$edge.length
+names(Lengths) <- AnolisTree$tip.label
+names(Lengths) [which(Lengths == min(Lengths))]
+plot(AnolisTree, cex=0.25)
+Labs <- sapply (AnolisTree$edge.length, round, digits=2)
+tiplabels (frame="circle", bg='lightblue', cex=1)
+nodelabels (frame="circle", bg='white', cex=1)
+tree$tip.label
 tree$edge
-edgelabels()
-nodelabels()
-tiplabels()
-Ntip(tree)
-which(tree$edge[,2] <= Ntip(tree))
-tree
-tree$edge.length
-compute.brlen(tree)
-tree <- compute.brlen(tree)
-plot(tree)
-which(tree$edge[,2] <= Ntip(tree))
-EdgesThatAreTips <- which(tree$edge[,2] <= Ntip(tree))
-tree <- read.tree(text= "(((A,B), (C,D)), E) ;")#
-tree <- compute.brlen(tree)#
-plotTree (tree, offset=1)#
-tiplabels (frame="circle", bg='lightblue', cex=1)#
-nodelabels (frame="circle", bg='white', cex=1)#
-tree$tip.label#
-tree$edge#
-#
-EdgesThatAreTips <- which(tree$edge[,2] <= Ntip(tree))
-tree$edge.length
-tree$edge.length[EdgesThatAreTips]
-which(TipLengths == min(TipLengths))
-TipLengths <- tree$edge.length[EdgesThatAreTips]#
-which(TipLengths == min(TipLengths))
-?drop.tip
-tree_no_short <- drop.tip(tree, ShortestTips[1])
-ShortestTips <- which(TipLengths == min(TipLengths))#
-tree_no_short <- drop.tip(tree, ShortestTips[1])
-plot(tree_no_short)
-ShortestTips <- which(TipLengths == min(TipLengths))#
-tree_no_short <- drop.tip(tree, ShortestTips[1:2])
-plot(tree_no_short)
-setwd("~/Desktop/Evolution/Tasks/Project")#
-mydata <- read.csv ("Evolutionproject.csv")
-head(mydata)
-boxplot(mydata[,4]~mydata[,1])
-boxplot(mydata[,4]~mydata[,1])
-boxplot(mydata[,4]~mydata[,1], xlab="species", ylab="call time", box.wex=0.2)
-boxplot(mydata[,4]~mydata[,1], xlab="species", ylab="call time", boxwex=0.2)
-boxplot(mydata[,4]~mydata[,1], xlab="species", ylab="call time", boxwex=0.2, col=c("orange", "blue"))
-par(mar=c(4,5,1,1), las=1)#
-boxplot(mydata[,4]~mydata[,1], xlab="species", ylab="call time", boxwex=0.2, col=c("#b3e2cd", "#fdcdac"))
-par(mar=c(4,5,1,1), las=1, tck=-0.01, mgp=c(1.5,0.5,0))#
-boxplot(mydata[,4]~mydata[,1], xlab="species", ylab="call time", boxwex=0.2, col=c("#b3e2cd", "#fdcdac"))
-par(mar=c(4,5,1,1), las=1, tck=-0.01, mgp=c(3,0.5,0))#
-boxplot(mydata[,4]~mydata[,1], xlab="species", ylab="call time", boxwex=0.2, col=c("#b3e2cd", "#fdcdac"))
-AnolisTree <- force.ultrametric (read.tree("https://jonsmitchell.com/data/anolis.tre"))#
-par(las=1)#
-hist(AnolisTree$edge.length, col= 'black', border='white', main="", xlab=" edge lengths for the Anolis tree", ylim=c(0, 50), xlim=c(0,6))#
-tipEdges <-which(AnolisTree$edge[, 2] <= Ntip (AnolisTree))#
-Lengths <-AnolisTree$edge.length#
-names(Lengths) <- AnolisTree$tip.label#
-names(Lengths) [which(Lengths == min(Lengths))]#
-plot(AnolisTree, cex=0.25)#
-Labs <- sapply (AnolisTree$edge.length, round, digits=2)#
-edgelabels(text=Labs, cex= 0.25)
-EdgesThatAreTips <- which(tree$edge[,2] <= Ntip(AnolisTree))
-TipLengths <- tree$edge.length[EdgesThatAreTips]
-ShortestTips <- which(TipLengths == min(TipLengths))
-tree_no_short <- drop.tip(tree, ShortestTips[1])
-tree$edge.length
-ShortestTips <- which(TipLengths == min(TipLengths))
-tree_no_short <- drop.tip(tree, ShortestTips[1])
+Anolistree$edge
+AnolisTree$edge
+EdgesThatAreTips <- which(AnolisTree$edge[,2] <= Ntip(AnolisTree))
+TipLengths <- AnolisTree$edge.length[EdgesThatAreTips]
+AnolisTree$edge.length
+AnolisShortestTips <- which(TipLengths == min(TipLengths))
+Anolistree_no_short <- drop.tip(tree, AnolisShortestTips[1])
+Anolistree_no_short <- drop.tip(tree, AnolisShortestTips[])
+Anolistree_no_short <- drop.tip(tree, AnolisShortestTips[1])
+plot(Anolistree_no_short)
