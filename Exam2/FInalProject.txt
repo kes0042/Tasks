@@ -1,0 +1,790 @@
+
+R version 4.0.3 (2020-10-10) -- "Bunny-Wunnies Freak Out"
+Copyright (C) 2020 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin17.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[R.app GUI 1.73 (7892) x86_64-apple-darwin17.0]
+
+[History restored from /Users/KT/.Rapp.history]
+
+> setwd("~/Desktop/Evolution/Tasks/Project")
+> mydata <- read.csv ("MassBMRproject.csv")
+> head(mydata)
+  Species.name..original.dataset. mb..g. Log10.mb..g. BMR..ml.O2.h.1.
+1               Abrothrix andinus  34.90         1.54           61.77
+2            Abrothrix longipilis  42.30         1.63           57.53
+3             Abrothrix olivaceus  27.00         1.43           49.41
+4                Acomys cahirinus  42.00         1.62           46.20
+5                 Acomys russatus  60.00         1.78           45.00
+6            Acomys spinosissimus  27.02         1.43           44.12
+  Log10.BMR..ml.O2.h.1.
+1                  1.79
+2                  1.76
+3                  1.69
+4                  1.66
+5                  1.65
+6                  1.64
+> plot(mydata$Log10.BMR..ml.02.h.1., mydata$Log10.mb..g.)
+Error in xy.coords(x, y, xlabel, ylabel, log) : 
+  'x' and 'y' lengths differ
+> plot(mydata[,5], mydata[,3])
+> 
+> plot(mydata[,5], mydata[,3], pch=16, col=rgb(0,0,0,0.5))
+> 
+> plot(mydata[,5], mydata[,3], pch=16, col=rgb(0,0,0,0.5), xlab="log10 BMR", ylab="log10 mass")
+> par(mar=c(4,5,1,1), mgp=c(2.5,0.3,0), tck=-0.01, las=1)
+> plot(mydata[,5], mydata[,3], pch=16, col=rgb(0,0,0,0.5), xlab="log10 BMR", ylab="log10 mass")
+> par(mar=c(4,5,1,1), mgp=c(2.5,0.3,0), tck=-0.01, las=1)
+> plot(mydata[,5], mydata[,3], pch=16, col=rgb(0,0,0,0.5), xlab="log10 BMR", ylab="log10 mass")
+> # incorrect regression line--No phylogeny
+> NoPhy <- lm(mydata[,3]~mydata[,5])
+> abline(NoPhy, col='red', lty=2)
+> install.packages("nlme")
+--- Please select a CRAN mirror for use in this session ---
+trying URL 'https://rweb.crmda.ku.edu/cran/bin/macosx/contrib/4.0/nlme_3.1-152.tgz'
+Content type 'application/x-gzip' length 2407681 bytes (2.3 MB)
+==================================================
+downloaded 2.3 MB
+
+
+The downloaded binary packages are in
+	/var/folders/09/7knfrdrs38dcppwqq5nvx61r0000gn/T//RtmpXkK5kF/downloaded_packages
+> library(phytools)
+Loading required package: ape
+Loading required package: maps
+> library(nlme)
+> Trees <- read.nexus("output.nex")
+> tree <- Trees[[1]]
+> tree
+
+Phylogenetic tree with 390 tips and 389 internal nodes.
+
+Tip labels:
+  Procavia_capensis, Heterohyrax_brucei, Elephantulus_myurus, Elephantulus_edwardii, Elephantulus_brachyrhynchus, Elephantulus_rufescens, ...
+
+Rooted; includes branch lengths.
+> nrow(mydata)
+[1] 458
+> 
+> Drops <- setdiff(mydata[,1], tree$tip.label)
+> Drops
+  [1] "Abrothrix andinus"                  
+  [2] "Abrothrix longipilis"               
+  [3] "Abrothrix olivaceus"                
+  [4] "Acomys cahirinus"                   
+  [5] "Acomys russatus"                    
+  [6] "Acomys spinosissimus"               
+  [7] "Acomys subspinosus"                 
+  [8] "Aconaemys fuscus"                   
+  [9] "Acrobates pygmaeus"                 
+ [10] "Aepyprymnus rufescens"              
+ [11] "Aethomys namaquensis"               
+ [12] "Ailurus fulgens"                    
+ [13] "Akodon azarae"                      
+ [14] "Ammospermophilus leucurus"          
+ [15] "Anoura caudifer"                    
+ [16] "Anoura latidens"                    
+ [17] "Antechinomys laniger"               
+ [18] "Antechinus flavipes"                
+ [19] "Antechinus stuartii"                
+ [20] "Aotus trivirgatus"                  
+ [21] "Aplodontia rufa"                    
+ [22] "Apodemus agrarius"                  
+ [23] "Apodemus flavicollis"               
+ [24] "Apodemus hermonensis"               
+ [25] "Apodemus mystacinus"                
+ [26] "Apodemus sylvaticus"                
+ [27] "Arborimus longicaudus"              
+ [28] "Arctictis binturong"                
+ [29] "Arctogalidia trivirgata"            
+ [30] "Artibeus concolor"                  
+ [31] "Artibeus jamaicensis"               
+ [32] "Artibeus lituratus"                 
+ [33] "Arvicola richardsoni"               
+ [34] "Arvicola terrestris"                
+ [35] "Atelerix albiventris"               
+ [36] "Auliscomys boliviensis"             
+ [37] "Auliscomys micropus"                
+ [38] "Baiomys taylori"                    
+ [39] "Bathyergus janetta"                 
+ [40] "Bettongia gaimardi"                 
+ [41] "Blarina brevicauda"                 
+ [42] "Brachylagus idahoensis"             
+ [43] "Burramys parvus"                    
+ [44] "Cabassous centralis"                
+ [45] "Callithrix pygmaea"                 
+ [46] "Calomys callosus"                   
+ [47] "Calomys lepidus"                    
+ [48] "Calomys musculinus"                 
+ [49] "Calomys venustus"                   
+ [50] "Caluromys derbianus"                
+ [51] "Canis latrans"                      
+ [52] "Canis lupus"                        
+ [53] "Canis mesomelas"                    
+ [54] "Cannomys badius"                    
+ [55] "Carollia perspicillata"             
+ [56] "Cercartetus concinnus"              
+ [57] "Cercartetus lepidus"                
+ [58] "Cercartetus nanus"                  
+ [59] "Cercopithecus mitis"                
+ [60] "Cerdocyon thous"                    
+ [61] "Chaetophractus nationi"             
+ [62] "Chaetophractus vellerosus"          
+ [63] "Chalinolobus gouldii"               
+ [64] "Chionomys nivalis"                  
+ [65] "Chironectes minimus"                
+ [66] "Chrotopterus auritus"               
+ [67] "Clethrionomys californicus"         
+ [68] "Clethrionomys gapperi"              
+ [69] "Clethrionomys glareolus"            
+ [70] "Clethrionomys rutilus"              
+ [71] "Colobus guereza"                    
+ [72] "Condylura cristata"                 
+ [73] "Conilurus penicillatus"             
+ [74] "Crocidura crossei"                  
+ [75] "Crocidura hildegardeae"             
+ [76] "Crocidura leucodon"                 
+ [77] "Crocidura luna"                     
+ [78] "Crocidura olivieri"                 
+ [79] "Crocidura poenis"                   
+ [80] "Crocidura russula"                  
+ [81] "Crocidura suaveolens"               
+ [82] "Crocidura viaria"                   
+ [83] "Cryptomys bocagei"                  
+ [84] "Cryptomys damarensis"               
+ [85] "Cryptomys hottentotus"              
+ [86] "Cryptomys mahali"                   
+ [87] "Cryptomys mechowi"                  
+ [88] "Cryptomys natalensis"               
+ [89] "Cryptomys nimrodi"                  
+ [90] "Ctenomys australis"                 
+ [91] "Ctenomys chasiquensis"              
+ [92] "Ctenomys fulvus"                    
+ [93] "Ctenomys magellanicus"              
+ [94] "Ctenomys maulinus"                  
+ [95] "Ctenomys opimus"                    
+ [96] "Ctenomys peruanus"                  
+ [97] "Ctenomys porteusi"                  
+ [98] "Ctenomys talarum"                   
+ [99] "Ctenomys tuconax"                   
+[100] "Cynomys ludovicianus"               
+[101] "Cynopterus brachyotis"              
+[102] "Dasycerus cristicauda"              
+[103] "Dasyprocta azarae"                  
+[104] "Dasyprocta leporina"                
+[105] "Dasypus novemcinctus"               
+[106] "Dasyuroides byrnei"                 
+[107] "Dasyurus hallucatus"                
+[108] "Dasyurus viverrinus"                
+[109] "Dendrolagus matschiei"              
+[110] "Desmodillus auricularis"            
+[111] "Desmodus rotundus"                  
+[112] "Diaemus youngi"                     
+[113] "Dicrostonyx groenlandicus"          
+[114] "Didelphis marsupialis"              
+[115] "Didelphis virginiana"               
+[116] "Diphylla ecaudata"                  
+[117] "Dipodillus dasyurus"                
+[118] "Dipodomys agilis"                   
+[119] "Dipodomys deserti"                  
+[120] "Dipodomys heermanni"                
+[121] "Dipodomys merriami"                 
+[122] "Dipodomys microps"                  
+[123] "Dipodomys nitratoides"              
+[124] "Dipodomys ordii"                    
+[125] "Dipodomys panamintinus"             
+[126] "Dobsonia anderseni"                 
+[127] "Dobsonia minor"                     
+[128] "Dobsonia praedatrix"                
+[129] "Dolichotis salinicola"              
+[130] "Echymipera kalabu"                  
+[131] "Echymipera rufescens"               
+[132] "Eira barbara"                       
+[133] "Elephantulus brachyrhynchus"        
+[134] "Elephantulus edwardii"              
+[135] "Elephantulus intufi"                
+[136] "Elephantulus myurus"                
+[137] "Elephantulus rozeti"                
+[138] "Elephantulus rufescens"             
+[139] "Eligmodontia typus"                 
+[140] "Eonycteris spelaea"                 
+[141] "Eospalax fontanierii"               
+[142] "Erethizon dorsatum"                 
+[143] "Erinaceus concolor"                 
+[144] "Erophylla bombifrons"               
+[145] "Eulemur fulvus"                     
+[146] "Euneomys chinchilloides"            
+[147] "Euphractus sexcinctus"              
+[148] "Fossa fossana"                      
+[149] "Fukomys anselli"                    
+[150] "Fukomys darlingi"                   
+[151] "Funisciurus congicus"               
+[152] "Galago crassicaudatus"              
+[153] "Galago senegalensis"                
+[154] "Galea musteloides"                  
+[155] "Galerella sanguinea"                
+[156] "Genetta tigrina"                    
+[157] "Geomys bursarius"                   
+[158] "Geomys pinetis"                     
+[159] "Georychus capensis"                 
+[160] "Gerbillurus paeba"                  
+[161] "Gerbillurus setzeri"                
+[162] "Gerbillurus tytonis"                
+[163] "Gerbillurus vallinus"               
+[164] "Gerbillus allenbyi"                 
+[165] "Gerbillus andersoni"                
+[166] "Gerbillus nanus"                    
+[167] "Gerbillus perpallidus"              
+[168] "Gerbillus pusillus"                 
+[169] "Gerbillus pyramidum"                
+[170] "Glaucomys volans"                   
+[171] "Glossophaga longirostris"           
+[172] "Glossophaga soricina"               
+[173] "Golunda ellioti"                    
+[174] "Graomys griseoflavus"               
+[175] "Graphiurus murinus"                 
+[176] "Graphiurus ocularis"                
+[177] "Gymnobelideus leadbeateri"          
+[178] "Heliophobius argenteocinereus"      
+[179] "Heterocephalus glaber"              
+[180] "Heterohyrax brucei"                 
+[181] "Heteromys anomalus"                 
+[182] "Heteromys desmarestianus"           
+[183] "Hipposideros diadema"               
+[184] "Hipposideros galeritus"             
+[185] "Hipposideros maggietaylorae"        
+[186] "Histiotus velatus"                  
+[187] "Hydrochoerus hydrochaeris"          
+[188] "Hydromys chryogaster"               
+[189] "Hystrix africaeaustralis"           
+[190] "Isoodon obesulus"                   
+[191] "Isthmomys pirrensis"                
+[192] "Jaculus jaculus"                    
+[193] "Jaculus orientalis"                 
+[194] "Kerodon rupestris"                  
+[195] "Kobus ellipsiprymnus"               
+[196] "Lagorchestes conspicillatus"        
+[197] "Lagurus curtatus"                   
+[198] "Lasiorhinus latifrons"              
+[199] "Lasiurus cinereus"                  
+[200] "Lemmus sibiricus"                   
+[201] "Lemniscomys rosalia"                
+[202] "Leptailurus serval"                 
+[203] "Leptonycteris curasoae"             
+[204] "Lepus alleni"                       
+[205] "Liomys irroratus"                   
+[206] "Liomys salvini"                     
+[207] "Loris tardigradus"                  
+[208] "Lutreolina crassicaudata"           
+[209] "Macroderma gigas"                   
+[210] "Macroglossus minimus"               
+[211] "Macropus giganteus"                 
+[212] "Macropus rufus"                     
+[213] "Macroscelides proboscideus"         
+[214] "Macrotis lagotis"                   
+[215] "Madoqua kirkii"                     
+[216] "Malacothrix typica"                 
+[217] "Marmosa robinsoni"                  
+[218] "Martes americana"                   
+[219] "Mastomys natalensis"                
+[220] "Megadontomys thomasi"               
+[221] "Melonycteris melanops"              
+[222] "Meriones hurrianae"                 
+[223] "Meriones unguiculatus"              
+[224] "Metachirus nudicaudatus"            
+[225] "Microcavia niata"                   
+[226] "Microdipodops megacephalus"         
+[227] "Microdipodops pallidus"             
+[228] "Micromys minutus"                   
+[229] "Microtus arvalis"                   
+[230] "Microtus californicus"              
+[231] "Microtus guentheri"                 
+[232] "Microtus longicaudatus"             
+[233] "Microtus longicaudus"               
+[234] "Microtus mexicanus"                 
+[235] "Microtus montanus"                  
+[236] "Microtus ochrogaster"               
+[237] "Microtus oeconomus"                 
+[238] "Microtus pennsylvanicus"            
+[239] "Microtus pinetorum"                 
+[240] "Microtus richardsoni"               
+[241] "Microtus subterraneus"              
+[242] "Microtus xanthognathus"             
+[243] "Miniopterus schreibersii"           
+[244] "Molossus molossus"                  
+[245] "Monodelphis brevicaudata"           
+[246] "Monodelphis domestica"              
+[247] "Monophyllus redmani"                
+[248] "Mormoops blainvillei"               
+[249] "Mormoops megalophylla"              
+[250] "Mus minutoides"                     
+[251] "Mus musculus"                       
+[252] "Mus spretus"                        
+[253] "Mustela erminea"                    
+[254] "Myoprocta acouchy"                  
+[255] "Myopus schisticolor"                
+[256] "Myotis keaysi"                      
+[257] "Myotis oxyotus"                     
+[258] "Myotis thysanodes"                  
+[259] "Myrmecobius fasciatus"              
+[260] "Mystromys albicaudatus"             
+[261] "Nandinia binotata"                  
+[262] "Napaeozapus insignis"               
+[263] "Nasua narica"                       
+[264] "Nasua nasua"                        
+[265] "Natalus tumidirostris"              
+[266] "Neofiber alleni"                    
+[267] "Neomys fodiens"                     
+[268] "Neotoma fuscipes"                   
+[269] "Neotoma lepida"                     
+[270] "Neurotrichus gibbsii"               
+[271] "Ningaui yvonneae"                   
+[272] "Noctilio albiventris"               
+[273] "Noctilio leporinus"                 
+[274] "Notiosorex crawfordi"               
+[275] "Notomys alexis"                     
+[276] "Notomys cervinus"                   
+[277] "Nycticebus coucang"                 
+[278] "Nyctimene albiventer"               
+[279] "Nyctophilus geoffroyi"              
+[280] "Ochotona princeps"                  
+[281] "Ochrotomys nuttalli"                
+[282] "Octodon bridgesi"                   
+[283] "Octodon degus"                      
+[284] "Octodon lunatus"                    
+[285] "Octodontomys gliroides"             
+[286] "Octomys mimax"                      
+[287] "Ondatra zibethicus"                 
+[288] "Onychomys torridus"                 
+[289] "Oryzomys longicaudatus"             
+[290] "Otomys irroratus"                   
+[291] "Otomys sloggetti"                   
+[292] "Otomys unisulcatus"                 
+[293] "Oxymycterus roberti"                
+[294] "Paradoxurus hermaphroditus"         
+[295] "Paraxerus cepapi"                   
+[296] "Paraxerus palliatus ornatus"        
+[297] "Paraxerus palliatus tongensis"      
+[298] "Parotomys brantsii"                 
+[299] "Pecari tajacu"                      
+[300] "Pedetes capensis"                   
+[301] "Perameles nasuta"                   
+[302] "Perodicticus potto"                 
+[303] "Perognathus baileyi"                
+[304] "Perognathus californicus"           
+[305] "Perognathus fallax"                 
+[306] "Perognathus flavus"                 
+[307] "Perognathus formosus"               
+[308] "Perognathus hispidus"               
+[309] "Perognathus intermedius"            
+[310] "Perognathus longimembris"           
+[311] "Perognathus penicillatus"           
+[312] "Peromyscus boylii"                  
+[313] "Peromyscus californicus insignis"   
+[314] "Peromyscus californicus parasiticus"
+[315] "Peromyscus crinitus pergracilis"    
+[316] "Peromyscus crinitus stephensi"      
+[317] "Peromyscus eremicus eremicus"       
+[318] "Peromyscus gossypinus"              
+[319] "Peromyscus leucopus"                
+[320] "Peromyscus maniculatus gambeli"     
+[321] "Peromyscus maniculatus sonoriensis" 
+[322] "Peromyscus polionotus"              
+[323] "Peromyscus sitkensis"               
+[324] "Peromyscus truei gilberti"          
+[325] "Peromyscus truei truei"             
+[326] "Peropteryx macrotis"                
+[327] "Petauroides volans"                 
+[328] "Petaurus breviceps"                 
+[329] "Petradromys tetradactylus"          
+[330] "Petromyscus collinus"               
+[331] "Phalanger carmelitae"               
+[332] "Phalanger sericeus"                 
+[333] "Phascolarctos cinereus"             
+[334] "Phasogale tapoatafa"                
+[335] "Phenacomys intermedius"             
+[336] "Philander opossum"                  
+[337] "Philantomba monticola"              
+[338] "Phodopus sungorus"                  
+[339] "Phodopus sungorus cambelli"         
+[340] "Phyllostomus discolor"              
+[341] "Phyllostomus elongatus"             
+[342] "Phyllostomus hastatus"              
+[343] "Phyllotis darwini darwini"          
+[344] "Phyllotis darwini rupestris"        
+[345] "Planigale gilesi"                   
+[346] "Planigale ingrami"                  
+[347] "Planigale maculata"                 
+[348] "Podomys floridanus"                 
+[349] "Potorous tridactylus"               
+[350] "Potos flavus"                       
+[351] "Priodontes maximus"                 
+[352] "Procavia capensis"                  
+[353] "Proechimys semispinosus"            
+[354] "Pseudantechinus macdonnellensis"    
+[355] "Pseudocheirus peregrinus"           
+[356] "Pseudomys gracilicaudatus"          
+[357] "Pseudomys hermannsburgensis"        
+[358] "Pteronotus davyi"                   
+[359] "Pteronotus parnellii"               
+[360] "Pteronotus personatus"              
+[361] "Pteronotus quadridens"              
+[362] "Pteropus poliocephalus"             
+[363] "Pteropus rodricensis"               
+[364] "Pteropus scapulatus"                
+[365] "Ptilocerus lowii"                   
+[366] "Raphicerus campestris"              
+[367] "Rattus colletti"                    
+[368] "Rattus fuscipes"                    
+[369] "Rattus lutreolus"                   
+[370] "Rattus meltada"                     
+[371] "Rattus villosissimus"               
+[372] "Reithrodon auritus"                 
+[373] "Reithrodontomys megalotis"          
+[374] "Rhabdomys pumilio"                  
+[375] "Rhinonicteris aurantia"             
+[376] "Saccopteryx bilineata"              
+[377] "Saccostomus campestris"             
+[378] "Saimiri sciureus"                   
+[379] "Scalopus aquaticus"                 
+[380] "Sciurus aberti"                     
+[381] "Sciurus carolinensis"               
+[382] "Scotinomys teguina"                 
+[383] "Scotinomys xerampelinus"            
+[384] "Sekeetamys calurus"                 
+[385] "Setifer setosus"                    
+[386] "Setonix brachyurus"                 
+[387] "Sicista betulina"                   
+[388] "Sigmodon alleni"                    
+[389] "Sigmodon fulviventer"               
+[390] "Sigmodon hispidus"                  
+[391] "Sigmodon leucotis"                  
+[392] "Sigmodon ochrognathus"              
+[393] "Sminthopsis crassicaudata"          
+[394] "Sminthopsis macroura"               
+[395] "Sminthopsis murina"                 
+[396] "Sorex alpinus"                      
+[397] "Sorex araneus"                      
+[398] "Sorex cinereus"                     
+[399] "Sorex coronatus"                    
+[400] "Sorex minutus"                      
+[401] "Sorex sinuosus"                     
+[402] "Spalacopus cyanus"                  
+[403] "Spalax erhenbergi"                  
+[404] "Spalax leucodon"                    
+[405] "Spermophilus armatus"               
+[406] "Spermophilus beecheyi"              
+[407] "Spermophilus beldingi"              
+[408] "Spermophilus lateralis"             
+[409] "Spermophilus richardsonii"          
+[410] "Spermophilus tereticaudus"          
+[411] "Spermophilus townsendii"            
+[412] "Spermophilus tridecemlineatus"      
+[413] "Spermophilus undulatus*"            
+[414] "Spilocuscus maculatus"              
+[415] "Spilogale putorius"                 
+[416] "Steatomys pratensis"                
+[417] "Sturnira erythromos"                
+[418] "Sturnira lilium"                    
+[419] "Suricata suricatta"                 
+[420] "Syconycteris australis"             
+[421] "Sylvilagus audubonii"               
+[422] "Tachyoryctes splendens"             
+[423] "Tamandua tetradactyla"              
+[424] "Tamias amoenus"                     
+[425] "Tamias merriami"                    
+[426] "Tamias minimus"                     
+[427] "Tamias palmeri"                     
+[428] "Tamias striatus"                    
+[429] "Tamiasciurus hudsonicus"            
+[430] "Tarsipes rostratus"                 
+[431] "Tarsius syrichta"                   
+[432] "Tatera afra"                        
+[433] "Tatera indica"                      
+[434] "Tatera leucogaster"                 
+[435] "Thallomys nigricauda"               
+[436] "Thallomys paedulcus"                
+[437] "Thomomys bottae"                    
+[438] "Thomomys talpoides"                 
+[439] "Thomomys umbrinus"                  
+[440] "Thrichomys apereoides"              
+[441] "Thylamys elegans"                   
+[442] "Tolypeutes matacus"                 
+[443] "Tonatia bidens"                     
+[444] "Tragulus javanicus"                 
+[445] "Tupaia belangeri"                   
+[446] "Tupaia glis"                        
+[447] "Tympanoctomys barrerae"             
+[448] "Uroderma bilobatum"                 
+[449] "Urogale everetti"                   
+[450] "Uromys caudimaculatus"              
+[451] "Vulpes macrotis"                    
+[452] "Vulpes vulpes"                      
+[453] "Vulpes zerda"                       
+[454] "Xerus inauris"                      
+[455] "Xerus princeps"                     
+[456] "Zaedyus pichiy"                     
+[457] "Zaglossus bruijni"                  
+[458] "Zapus hudsonius"                    
+> setwd("~/Desktop/Evolution/Tasks/Project")
+> mydata <- read.csv ("MassBMRproject.csv")
+> head(mydata)
+  Species.name..original.dataset. mb..g. Log10.mb..g. BMR..ml.O2.h.1.
+1               Abrothrix andinus  34.90         1.54           61.77
+2            Abrothrix longipilis  42.30         1.63           57.53
+3             Abrothrix olivaceus  27.00         1.43           49.41
+4                Acomys cahirinus  42.00         1.62           46.20
+5                 Acomys russatus  60.00         1.78           45.00
+6            Acomys spinosissimus  27.02         1.43           44.12
+  Log10.BMR..ml.O2.h.1.
+1                  1.79
+2                  1.76
+3                  1.69
+4                  1.66
+5                  1.65
+6                  1.64
+> mydata[,1] <- gsub(" ", "_", mydata[,1])
+> par(mar=c(4,5,1,1), mgp=c(2.5,0.3,0), tck=-0.01, las=1)
+> plot(mydata[,5], mydata[,3], pch=16, col=rgb(0,0,0,0.5), xlab="log10 BMR", ylab="log10 mass")
+> # incorrect regression line--No phylogeny
+> NoPhy <- lm(mydata[,3]~mydata[,5])
+> abline(NoPhy, col='red', lty=2)
+> library(phytools)
+> library(nlme)
+> Trees <- read.nexus("output.nex")
+> tree <- Trees[[1]]
+> Drops <- setdiff(mydata[,1], tree$tip.label)
+> Drops
+ [1] "Apodemus_hermonensis"               
+ [2] "Arvicola_richardsoni"               
+ [3] "Arvicola_terrestris"                
+ [4] "Auliscomys_micropus"                
+ [5] "Callithrix_pygmaea"                 
+ [6] "Clethrionomys_californicus"         
+ [7] "Clethrionomys_gapperi"              
+ [8] "Clethrionomys_glareolus"            
+ [9] "Clethrionomys_rutilus"              
+[10] "Crocidura_poenis"                   
+[11] "Cryptomys_bocagei"                  
+[12] "Cryptomys_damarensis"               
+[13] "Cryptomys_mahali"                   
+[14] "Cryptomys_mechowi"                  
+[15] "Cryptomys_natalensis"               
+[16] "Cryptomys_nimrodi"                  
+[17] "Ctenomys_chasiquensis"              
+[18] "Ctenomys_porteusi"                  
+[19] "Dasycerus_cristicauda"              
+[20] "Dipodillus_dasyurus"                
+[21] "Echymipera_kalabu"                  
+[22] "Galago_crassicaudatus"              
+[23] "Galerella_sanguinea"                
+[24] "Gerbillus_allenbyi"                 
+[25] "Hydromys_chryogaster"               
+[26] "Lagurus_curtatus"                   
+[27] "Microtus_longicaudatus"             
+[28] "Oryzomys_longicaudatus"             
+[29] "Paraxerus_palliatus_ornatus"        
+[30] "Paraxerus_palliatus_tongensis"      
+[31] "Perognathus_baileyi"                
+[32] "Perognathus_californicus"           
+[33] "Perognathus_fallax"                 
+[34] "Perognathus_formosus"               
+[35] "Perognathus_hispidus"               
+[36] "Perognathus_intermedius"            
+[37] "Perognathus_penicillatus"           
+[38] "Peromyscus_californicus_insignis"   
+[39] "Peromyscus_californicus_parasiticus"
+[40] "Peromyscus_crinitus_pergracilis"    
+[41] "Peromyscus_crinitus_stephensi"      
+[42] "Peromyscus_eremicus_eremicus"       
+[43] "Peromyscus_maniculatus_gambeli"     
+[44] "Peromyscus_maniculatus_sonoriensis" 
+[45] "Peromyscus_sitkensis"               
+[46] "Peromyscus_truei_gilberti"          
+[47] "Peromyscus_truei_truei"             
+[48] "Petradromys_tetradactylus"          
+[49] "Phasogale_tapoatafa"                
+[50] "Phodopus_sungorus_cambelli"         
+[51] "Phyllotis_darwini_darwini"          
+[52] "Phyllotis_darwini_rupestris"        
+[53] "Ptilocerus_lowii"                   
+[54] "Rattus_meltada"                     
+[55] "Sorex_sinuosus"                     
+[56] "Spalax_erhenbergi"                  
+[57] "Spermophilus_armatus"               
+[58] "Spermophilus_beecheyi"              
+[59] "Spermophilus_beldingi"              
+[60] "Spermophilus_lateralis"             
+[61] "Spermophilus_richardsonii"          
+[62] "Spermophilus_tereticaudus"          
+[63] "Spermophilus_townsendii"            
+[64] "Spermophilus_tridecemlineatus"      
+[65] "Spermophilus_undulatus*"            
+[66] "Tatera_afra"                        
+[67] "Tatera_leucogaster"                 
+[68] "Zaglossus_bruijni"                  
+> DropRows <- grep(Drops, mydata[,1])
+Warning message:
+In grep(Drops, mydata[, 1]) :
+  argument 'pattern' has length > 1 and only the first element will be used
+> DropRows <- sapply(Drops, function(x) grep(x, mydata[,1]))
+> DropRows
+               Apodemus_hermonensis                Arvicola_richardsoni 
+                                 24                                  33 
+                Arvicola_terrestris                 Auliscomys_micropus 
+                                 34                                  37 
+                 Callithrix_pygmaea          Clethrionomys_californicus 
+                                 45                                  67 
+              Clethrionomys_gapperi             Clethrionomys_glareolus 
+                                 68                                  69 
+              Clethrionomys_rutilus                    Crocidura_poenis 
+                                 70                                  79 
+                  Cryptomys_bocagei                Cryptomys_damarensis 
+                                 83                                  84 
+                   Cryptomys_mahali                   Cryptomys_mechowi 
+                                 86                                  87 
+               Cryptomys_natalensis                   Cryptomys_nimrodi 
+                                 88                                  89 
+              Ctenomys_chasiquensis                   Ctenomys_porteusi 
+                                 91                                  97 
+              Dasycerus_cristicauda                 Dipodillus_dasyurus 
+                                102                                 117 
+                  Echymipera_kalabu               Galago_crassicaudatus 
+                                130                                 152 
+                Galerella_sanguinea                  Gerbillus_allenbyi 
+                                155                                 164 
+               Hydromys_chryogaster                    Lagurus_curtatus 
+                                188                                 197 
+             Microtus_longicaudatus              Oryzomys_longicaudatus 
+                                232                                 289 
+        Paraxerus_palliatus_ornatus       Paraxerus_palliatus_tongensis 
+                                296                                 297 
+                Perognathus_baileyi            Perognathus_californicus 
+                                303                                 304 
+                 Perognathus_fallax                Perognathus_formosus 
+                                305                                 307 
+               Perognathus_hispidus             Perognathus_intermedius 
+                                308                                 309 
+           Perognathus_penicillatus    Peromyscus_californicus_insignis 
+                                311                                 313 
+Peromyscus_californicus_parasiticus     Peromyscus_crinitus_pergracilis 
+                                314                                 315 
+      Peromyscus_crinitus_stephensi        Peromyscus_eremicus_eremicus 
+                                316                                 317 
+     Peromyscus_maniculatus_gambeli  Peromyscus_maniculatus_sonoriensis 
+                                320                                 321 
+               Peromyscus_sitkensis           Peromyscus_truei_gilberti 
+                                323                                 324 
+             Peromyscus_truei_truei           Petradromys_tetradactylus 
+                                325                                 329 
+                Phasogale_tapoatafa          Phodopus_sungorus_cambelli 
+                                334                                 339 
+          Phyllotis_darwini_darwini         Phyllotis_darwini_rupestris 
+                                343                                 344 
+                   Ptilocerus_lowii                      Rattus_meltada 
+                                365                                 370 
+                     Sorex_sinuosus                   Spalax_erhenbergi 
+                                401                                 403 
+               Spermophilus_armatus               Spermophilus_beecheyi 
+                                405                                 406 
+              Spermophilus_beldingi              Spermophilus_lateralis 
+                                407                                 408 
+          Spermophilus_richardsonii           Spermophilus_tereticaudus 
+                                409                                 410 
+            Spermophilus_townsendii       Spermophilus_tridecemlineatus 
+                                411                                 412 
+            Spermophilus_undulatus*                         Tatera_afra 
+                                413                                 432 
+                 Tatera_leucogaster                   Zaglossus_bruijni 
+                                434                                 457 
+> mydata <- mydata[-DropRows,]
+> 
+> Cor <- corBrownian(1, tree)
+> par(mar=c(4,5,1,1), mgp=c(2.5,0.3,0), tck=-0.01, las=1)
+> plot(mydata[,5], mydata[,3], pch=16, col=rgb(0,0,0,0.5), xlab="log10 BMR", ylab="log10 mass")
+> # incorrect regression line--No phylogeny
+> NoPhy <- lm(mydata[,3]~mydata[,5])
+> abline(NoPhy, col='red', lty=2)
+> model01 <- gls(mydata[,3]~mydata[,5], correlation=Cor)
+Error in model.frame.default(formula = ~mydata, data = <environment>,  : 
+  invalid type (list) for variable 'mydata'
+> colnames(mydata2)
+Error in is.data.frame(x) : object 'mydata2' not found
+> mydata2 <- mydata[-DropRows,]
+> colnames(mydata2)
+[1] "Species.name..original.dataset." "mb..g."                         
+[3] "Log10.mb..g."                    "BMR..ml.O2.h.1."                
+[5] "Log10.BMR..ml.O2.h.1."          
+> 
+> colnames(mydata2) <- c("species", "raw_bm", "logbm", "raw_bmr", "logbmr")
+> 
+> # find species missing from phylogeny
+> Drops <- setdiff(mydata[,1], tree$tip.label)
+> DropRows <- sapply(Drops, function(x) grep(x, mydata[,1]))
+> mydata2 <- mydata[-DropRows,]
+Error in -DropRows : invalid argument to unary operator
+> colnames(mydata2) <- c("species", "raw_bm", "logbm", "raw_bmr", "logbmr")
+> 
+> Cor <- corBrownian(1, tree)
+> 
+> par(mar=c(4,5,1,1), mgp=c(2.5,0.3,0), tck=-0.01, las=1)
+> plot(mydata2[,5], mydata2[,3], pch=16, col=rgb(0,0,0,0.5), xlab="log10 BMR", ylab="log10 mass")
+> # incorrect regression line--No phylogeny
+> NoPhy <- lm(mydata2[,3]~mydata2[,5])
+> abline(NoPhy, col='red', lty=2)
+> model01 <- gls(logbm~logbmr, data=mydata2, correlation=Cor)
+Warning message:
+In Initialize.corPhyl(X[[i]], ...) :
+  No covariate specified, species will be taken as ordered in the data frame. To avoid this message, specify a covariate containing the species names with the 'form' argument.
+> 
+> model01
+Generalized least squares fit by REML
+  Model: logbm ~ logbmr 
+  Data: mydata2 
+  Log-restricted-likelihood: -145.1827
+
+Coefficients:
+(Intercept)      logbmr 
+ -0.5516997   1.2982027 
+
+Correlation Structure: corBrownian
+ Formula: ~1 
+ Parameter estimate(s):
+numeric(0)
+Degrees of freedom: 336 total; 334 residual
+Residual standard error: 1.10095 
+> abline(model01)
+> # phylogenetically corrected linear regression
+> model01 <- gls(logbm~logbmr, data=mydata2, correlation=Cor)
+Warning message:
+In Initialize.corPhyl(X[[i]], ...) :
+  No covariate specified, species will be taken as ordered in the data frame. To avoid this message, specify a covariate containing the species names with the 'form' argument.
+> abline(model01, col='blue', lty=2, lwd=2)
+> par(mar=c(4,5,1,1), mgp=c(2.5,0.3,0), tck=-0.01, las=1)
+> plot(mydata2[,5], mydata2[,3], pch=16, col=rgb(0,0,0,0.5), xlab="log10 BMR", ylab="log10 mass")
+> 
+> # incorrect regression line--No phylogeny
+> NoPhy <- lm(mydata2[,3]~mydata2[,5])
+> abline(NoPhy, col='red', lty=2)
+> 
+> # phylogenetically corrected linear regression
+> model01 <- gls(logbm~logbmr, data=mydata2, correlation=Cor)
+Warning message:
+In Initialize.corPhyl(X[[i]], ...) :
+  No covariate specified, species will be taken as ordered in the data frame. To avoid this message, specify a covariate containing the species names with the 'form' argument.
+> abline(model01, col='blue', lty=2, lwd=2)
+> 
