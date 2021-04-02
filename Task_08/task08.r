@@ -48,3 +48,8 @@ Ancestors_withFossils <- fastAnc(tree, svl, anc.states=fossilNodes, CI=TRUE, var
 # question 7: fossils change the estimated ancestral sizes because you can look at the fossils and determine based off of how far the species is on the tree the relative size you can also look at the speices between two fossils and do the same thing. 
 # question 8-10:
 install.packages("geiger")
+library("geiger")
+?fitContinuous
+fitContinuous(tree, svl, model='EB')
+fitContinuous(tree, svl, model='OU')
+fitContinuous(tree, svl, model='BM')
