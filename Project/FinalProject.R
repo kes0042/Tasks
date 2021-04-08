@@ -15,9 +15,12 @@ head(mydata)
 # rename data to match phylogeny
 mydata[,1] <- gsub(" ", "_", mydata[,1])
 
+
 # read in trees
 Trees <- read.nexus("output.nex")
 tree <- Trees[[1]]
+tree
+
 
 # find species missing from phylogeny
 Drops <- setdiff(mydata[,1], tree$tip.label)
@@ -26,9 +29,10 @@ mydata2 <- mydata[-DropRows,]
 colnames(mydata2) <- c("species", "raw_bm", "logbm", "raw_bmr", "logbmr")
 
 Cor <- corBrownian(1, tree)
+mydata2
 
 par(mar=c(4,5,1,1), mgp=c(2.5,0.3,0), tck=-0.01, las=1)
-plot(mydata2[,5], mydata2[,3], pch=16, col=rgb(0,0,0,0.5), xlab="log10 BMR", ylab="log10 mass")
+plot(mydata2[,5], mydata2[,3], pch=16, col=rgb(0,0,0,0.5), xlab="log10 BMR (O2 h-1 )", ylab="log10 mass (grams)")
 
 # incorrect regression line--No phylogeny
 NoPhy <- lm(mydata2[,3]~mydata2[,5])
@@ -46,3 +50,4 @@ logBMR <- setNames(mydata2[,"logbmr"], mydata2[,"species"])
 RRbmr <- RRphylo(tree, logBMR)
 logBM <- setNames(mydata2[,"logbm"], mydata2[,"species"])
 RRbm <- RRphylo(tree, mydata2[,"logbm"], cov=RRbmr, x1=mydata2[,"logbmr"])
+
