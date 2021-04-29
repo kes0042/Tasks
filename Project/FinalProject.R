@@ -1,5 +1,5 @@
 # Hypothesis:
-# There is a positive correlation between the mass and the basal metabolic rate in a wide range of mammals. #
+# There is a positive correlation between the altitude and the basal metabolic rate in a wide range of mammals. #
 
 # Import data ####
 #rm (list = ls())
@@ -32,7 +32,7 @@ Cor <- corBrownian(1, tree)
 mydata2
 
 par(mar=c(4,5,1,1), mgp=c(2.5,0.3,0), tck=-0.01, las=1)
-plot(mydata2[,5], mydata2[,3], pch=16, col=rgb(0,0,0,0.5), xlab="log10 BMR (O2 h-1 )", ylab="log10 mass (grams)")
+plot(mydata2[,5], mydata2[,3], pch=16, col=rgb(0,0,0,0.5), xlab="log10 BMR (O2 h-1 )", ylab="Altitude(m)")
 
 # incorrect regression line--No phylogeny
 NoPhy <- lm(mydata2[,3]~mydata2[,5])

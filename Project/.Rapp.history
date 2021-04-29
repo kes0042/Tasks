@@ -292,3 +292,23 @@ colnames(mydata2) <- c("species", "raw_bm", "logbm", "raw_bmr", "logbmr")#
 Cor <- corBrownian(1, tree)
 Cor
 mydata2
+library(phytools)
+library(nlme)
+library(RRphylo)
+setwd("~/Desktop/Evolution/Tasks/Project")
+mydata <- read.csv ("MassBMRproject.csv")
+head(mydata)
+mydata[,1] <- gsub(" ", "_", mydata[,1])
+Trees <- read.nexus("output.nex")
+tree <- Trees[[1]]
+tree
+Drops <- setdiff(mydata[,1], tree$tip.label)
+DropRows <- sapply(Drops, function(x) grep(x, mydata[,1]))
+mydata2 <- mydata[-DropRows,]
+colnames(mydata2) <- c("species", "raw_bm", "logbm", "raw_bmr", "logbmr")
+Cor <- corBrownian(1, tree)
+mydata2
+par(mar=c(4,5,1,1), mgp=c(2.5,0.3,0), tck=-0.01, las=1)
+plot(mydata2[,5], mydata2[,3], pch=16, col=rgb(0,0,0,0.5), xlab="log10 BMR (O2 h-1 )", ylab="Altitude(m)")
+model01 <- gls(logbm~logbmr, data=mydata2, correlation=Cor)
+abline(model01, col='blue', lty=2, lwd=2)
