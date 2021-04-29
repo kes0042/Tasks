@@ -1,0 +1,115 @@
+setwd("~/Desktop/Evolution/Tasks/Task_11")
+x <- rnorm(100, mean=5, sd =2)
+head(x)
+y <- (x*5) +2 +rnorm(100, 0:0.1)
+y
+x
+plot(x,y)
+albine(lm(x~y), col="blue")
+abline(lm(x~y), col="blue")
+coef (lm(x~y))
+plot(x,y)
+abline(lm(x~y), col="blue")
+coef (lm(x~y))
+abline(()x,y), col="blue")
+abline((x,y), col="blue")
+plot(x,y)
+abline((x,y), col="blue")
+coef (lm(x~y))
+coef (lm(x,yy))
+coef (lm(x,y))
+z <- c()
+x <- rnorm(100, mean=5n sd=2)
+x <- rnorm(100, mean=5, sd=2)
+for (i in 1:100) { z[i] <- runif(1) y <- (x * z[i] +2 + (rnorm(100, 0:0.1)) l <- coef(lm(z[1:100]~y))}
+for (i in 1:100) {#
+	 z[i] <- runif(1) #
+	 y <- (x * z[i] + 2 + (rnorm(100, 0:0.1)) #
+	 l <- coef(lm(z[1:100]y))}
+for (i in 1:100) {#
+	 z[i] <- runif(1) #
+	 y <- (x * z[i]) + 2 + (rnorm(100, 0:0.1)) #
+	 l <- coef(lm(z[1:100]y))}
+for (i in 1:100) {
+z[i] <- runif(1)
+y <- (x * z[i]) + 2 + (rnorm(100, 0:0.1))
+l <- coef(lm(z[1:100]y))}
+l <- coef(lm(z[1:100])}
+l <- coef(lm(z[1:100])
+}
+for (i in 1:100) {
+z[i] <- runif(1)
+y <- (x * z[i]) + 2 + (rnorm(100, 0:0.1))
+l <- coef(lm(z[1:100])
+}
+l <- coef(lm(z[1:100])
+<- rnorm(100, mean=5, sd=2)#
+for (i in 1:100) {#
+	 z[i] <- runif(1) #
+	 y <- (x * z[i]) + 2 + (rnorm(100, 0:0.1)) #
+	 l <- coef(lm(z[1:100])
+for (i in 1:100) {
+for (i in 1:100)
+z[i] <- runif(1)
+y <- (x * z[i]) + 2 + (rnorm(100, 0:0.1))
+l <- coef(lm(z[1:100])
+l <- coef(lm(z[1:100])
+x <- coef(lm(z[1:100])
+for (i in 1:100)
+for (i in 1:100)
+z[i] <- runif(1)
+y <- (x * z[i]) + 2 + (rnorm(100, 0:0.1))
+x <- coef(lm(z[1:100])
+for (i in 1:100) {
+x <- rnorm(100, mean=5, sd=2)
+z <- c()
+x <- rnorm(100, mean=5, sd=2)
+for (i in 1:100) {
+z[i] <- runif(1)
+y <- (x * z[i]) + 2 + (rnorm(100, 0:0.1))
+x <- coef(lm(z[1:100])
+}
+z <- c()#
+x <- rnorm(100, mean=5, sd=2)#
+for (i in 1:100) {#
+	 z[i] <- runif(1) #
+	 y <- (x * z[i]) + 2 + (rnorm(100, 0:0.1)) #
+	 x <- coef(lm(z[1:100])
+}
+plot(z[1:100])
+for (i in 1:100)) {#
+	 z[i] <- rnorm(100, mean=5, sd=2) #
+	 y <- (x * z[i]) + 2 + (rnorm(100, 0:0.1)) #
+	 x <- coef(lm(z[1:100]) #
+}
+for (i in 1:100) {
+z[i] <- rnorm(100, mean=5, sd=2)
+y <- (x * z[i]) + 2 + (rnorm(100, 0:0.1))
+x <- coef(lm(z[1:100])
+}
+z <- c()
+x <- rnorm(100, mean=5, sd=2)
+for (i in 1:100) {
+z[i] <- rnorm(100, mean=5, sd=2)
+y <- (x * z[i]) + 2 + (rnorm(100, 0:0.1))
+x <- coef(lm(z[1:100]) }
+z <- c()
+x <- rnorm(100, mean=5, sd=2)
+for (i in 1:100)
+z[i] <- rnorm(100, mean=5, sd=2)
+y <- (x * z[i]) + 2 + (rnorm(100, 0:0.1))
+y <- (x * z[i]) + 2 + (rnorm(100, 0:0.1))
+x <- coef(lm(z[1:100])
+plot(z[1:100])
+x <- coef(z[1:100])
+x <- (z[1:100])
+z <- c()
+x <- rnorm(100, mean=5, sd=2)
+for (i in 1:100)
+z[i] <- rnorm(100, mean=5, sd=2)
+y <- (x * z[i]) + 2 + (rnorm(100, 0:0.1))
+x <- (z[1:100])
+plot(z[1:100])
+abline(lm(y~z[1:100]))
+plot(c(z, -.32))
+install.packages("meme")
